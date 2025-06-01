@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>Frank's Portfolio</title>
+    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+    <link rel="shortcut icon" href="Assets/CSS/IMGS/logo.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="Assets/CSS/Style.css">
+
+    <script src="Assets/Js/script.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#porfolio" class="nav-link">Portfolio</a>
+        <a href="#faq" class="nav-link">Domande frequenti</a>
+        <a href="#section" class="nav-link">Contattami</a>
+      </nav>
+    </header>
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Ciao!<br/>Sono Frank</h1>
+        <h2>IT student and amateur Front-End Developer</h2>
+        <p>Ciao, sono Francesco, aka Frank!<br/>Sono uno studente di informatica, chi ha detto che le nuove generazioni non sono all'altezza dei grandi professionisti?<br/>Se è un sito web di cui hai bisogno, smetti di cercare, penso di essere l'opzione giusta per te</p>
+        <button onclick="scrollToSection()" class="btn">Metttimi alla prova</button>
+      </div>
+        <img alt="Logo of Frank" height="200" src="Assets/CSS/IMGS/logo.png" width="200"/>
+    </div>
+    <div class="section" id="section">
+      <h2>Ottieni il preventivo per il tuo sito in pochi click</h2>
+      <div class="box">
+        <div class="box-content">
+          <h3>Inviami una Mail!</h3>
+          <p>Inviami una mail con tutte le richieste per il tuo sito.</p>
+          <p><strong>Esempio:</strong> budget, numero di pagine, numero di link, immagini e dettagli particolari</p>
+          <br>
+          <a class="btn" href="mailto:lilnullbusiness@gmail.com">Scrivimi qui</a>
+        </div>
+        <i class="fas fa-envelope"></i>
+      </div>
+    </div>
+    <div class="recent-works">
+      <h2 id="porfolio">Lavori recenti</h2>
+      <div class="work">
+        <img alt="Pizzeria L'angoletto" height="150" src="Assets/CSS/IMGS/LeRosse.webp" width="150"/>
+        <div class="work-details">
+          <h3>Pizzeria L'angoletto</h3>
+          <span>2024</span>
+          <a href="https://menuangolettobitritto.com/" target="_blankS" class="work-link">Online menu <i class="fas fa-link"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="faq" id="faq">
+      <h2>Domande frequenti</h2>
+      <div class="question">
+        <ul class="domanda-risposta">
+            <li>
+                <h3>Tempi stimati di consegna del prodotto finale?</h3>
+            </li>
+            <p>Una delle domande più frequenti che mi capita di sentire rigurada i tempi di consegna dei lavori commissionati, ebbene, questi variano dalle esigenze del cliente:
+                In caso il cliente necessitasse del solo progetto grafico o della conversione di un progetto pronto in codice, i tempi di consegna sono contenuti.<br><br>
+                Se il cliente, invece, cerca un lavoro completo che parte dalla progettazione allo sviluppo, i tempi di consegna sono prolungati.
+                Ciascun cliente può poi pagare una commisione extra, concordata, per la realizzazione del lavoro che necessita nei tempi per lui più comodi.
+            </p>
+        </ul>
+      </div>
+      <br>
+      <div class="question">
+        <ul class="domanda-risposta">
+            <li>
+                <h3>Come posso pubblicare online un sito?</h3>
+            </li>
+            <p>
+                La domanda sorge spontanea quando il cliente è in mano del prodotto completo e non sa come renderlo accessibile al pubblico a cui desidera esporsi.
+                Dopo la consegna del prodotto finale, se desiderato dal cliente, sarà mia premura seguirlo in tutto il processo della pubblicazione del sito.<br><br>
+                Il website's hoster che uso per tutti i miei progetti è <a href="https://www.cloudflare.com/it-it/" target="_blank"><img src="Assets/CSS/IMGS/cloudflare.png" alt="cloudflare"style="width: 20px;"> Cloudflare</a>, host conosciuto per essere tra i più sicuri, user-friendly,
+                con la possibilità di acquistare domini a prezzi vantaggiosi, senza preoccuparsi di collegarli manualmente, poiché i processi sono automatici.
+            </p>
+        </ul>
+      </div>
+      <br>
+      <div class="question">
+        <ul class="domanda-risposta">
+            <li>
+                <h3>Quanto costa?</h3>
+            </li>
+            <p>
+                Il costo dei progetti varia in base alla struttura che il cliente vuole dare al sito:
+                cambia, quindi, in base al numero di pagine, link nella pagina, immagini ecc...<br><br>
+                per avere il prezzo migliore e adatto alle proprie esigenze, consiglio direttamente di contattarmi tramire la mail accessibile qui sopra, tramite le modalità sempre indicate, risponderò il prima possibibile con un preventivo personalizzato.
+            </p>
+        </ul>
+      </div>
+      <br>
+      <div class="question">
+        <ul class="domanda-risposta">
+            <li>
+                <h3>Come sono strutturati i siti che  realizzo?</h3>
+            </li>
+            <p>
+                Inizio a scrivere il codice necessario per la realizzazione del sito solo dopo che il progetto grafico è stato approvato dal cliente, e l'obbiettivo è replicare in maniera più fedele possibile il progetto<br>
+                utilizzando le risorse di HTML & CSS, includendo le skill in JavaScript che ho in possesso per l'aggiunta di dettagli e features extra.
+            </p>
+        </ul>
+      </div>
+    </div>
+    <footer class=" footer">
+      <p>Copyright 2024 | tutti i diritti sono riservati</p>
+    </footer>
+  </body>
+</html>

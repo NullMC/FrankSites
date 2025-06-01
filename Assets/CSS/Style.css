@@ -1,0 +1,11 @@
+@import url(header.css);
+@import url(content.css);
+@import url(footer.css);
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #EDF7FA;
+}
