@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded',()=>{
+  const toggle=document.getElementById('themeToggle');
+  const body=document.body;
+  // initial state
+  if(localStorage.getItem('theme')==='dark'){
+    body.classList.add('dark-mode');
+    toggle.innerHTML='<i class="fas fa-sun"></i>';
+  }
+  toggle.addEventListener('click',()=>{
+    body.classList.toggle('dark-mode');
+    const isDark=body.classList.contains('dark-mode');
+    toggle.innerHTML=isDark?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
+    localStorage.setItem('theme',isDark?'dark':'light');
+  });
+});
+
+
 // FAQ Slider functionality
 let currentFaqIndex = 0;
 const faqContainer = document.getElementById('faqContainer');
@@ -27,6 +44,7 @@ function currentFaq(index) {
     showFaq(index);
 }
 
+
 // Smooth scrolling for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -44,13 +62,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Header scroll effect
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
+
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
         header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
     } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
+        header.classList.remove("scrolled");
     }
+    
 });
 
 // Intersection Observer for animations
