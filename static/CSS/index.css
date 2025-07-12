@@ -547,6 +547,9 @@ body.dark-mode footer {
     .nav-links {
         display: none;
     }
+    .hero-image {
+        display: none;
+    }
 
     .faq-nav {
         display: none;
