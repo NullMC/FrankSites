@@ -31,6 +31,55 @@ body.dark-mode {
 body{font-family:'Inter',sans-serif;color:var(--text-primary);background:var(--bg-secondary);line-height:1.6;overflow-x:hidden;transition:background .3s ease,color .3s ease}
 a{text-decoration:none;color:inherit}
 
+/* Barra di completamento scroll */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(99, 102, 241, 0.1);
+    z-index: 1001;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #6366f1);
+    background-size: 200% 100%;
+    width: 0%;
+    transition: width 0.1s ease;
+    animation: progressGradient 2s ease infinite;
+}
+
+@keyframes progressGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Aggiusta il padding-top dell'header per far spazio alla barra */
+header {
+    top: 4px; /* Sposta l'header sotto la barra di progresso */
+}
+
+/* Versione dark mode */
+body.dark-mode .scroll-progress {
+    background: rgba(99, 102, 241, 0.2);
+}
+
+body.dark-mode .scroll-progress-bar {
+    background: linear-gradient(90deg, #6366f1, #a855f7, #6366f1);
+    background-size: 200% 100%;
+}
+
+/* Responsive per mobile */
+@media (max-width: 768px) {
+    .scroll-progress {
+        height: 3px;
+    }
+}
+
 /*************** TOGGLE ***************/
 .theme-toggle{position:fixed;right:1rem;top:1rem;z-index:1100;width:42px;height:42px;border:none;border-radius:50%;background:var(--primary-color);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-medium);transition:transform .3s ease}
 .theme-toggle:hover{transform:scale(1.05)}
@@ -575,3 +624,4 @@ body.dark-mode footer {
 .fade-in-up {
     animation: fadeInUp 0.6s ease forwards;
 }
+

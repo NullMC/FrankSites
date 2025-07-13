@@ -102,3 +102,27 @@ window.addEventListener('load', () => {
 // Initialize body opacity
 document.body.style.opacity = '0';
 document.body.style.transition = 'opacity 0.5s ease';
+
+
+function updateScrollProgress() {
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = (scrollTop / scrollHeight) * 100;
+    
+    scrollProgressBar.style.width = `${Math.min(scrollProgress, 100)}%`;
+    
+    // Nascondi la barra quando si è in cima
+    const progressContainer = document.querySelector('.scroll-progress');
+    if (scrollTop <= 50) {
+        progressContainer.style.opacity = '0.5';
+    } else {
+        progressContainer.style.opacity = '1';
+    }
+}
+
+// Event listener per lo scroll
+window.addEventListener('scroll', updateScrollProgress);
+
+// Inizializza la barra al caricamento
+document.addEventListener('DOMContentLoaded', updateScrollProgress);
