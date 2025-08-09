@@ -559,17 +559,18 @@ section{padding:6rem 0}
 
 /* Footer */
 footer{
-  background-color: #f2f2f2;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
   color: #333;
   text-align: center;
   padding: 1.5rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease, color 0.3s ease;
 }
 
 body.dark-mode footer {
-  background-color: #1c1c1c;
+  background:rgba(15,23,42,.9);
   color: #ccc;
-  border-top: 1px solid #333;
+  border-top:1px solid rgba(99,102,241,.1);
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
 }
 
