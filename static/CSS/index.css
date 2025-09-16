@@ -261,7 +261,7 @@ section{padding:6rem 0}
 
 /*************** NFC ***************/
 .nfc-services,.nfc-examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.service-card,.example-card{background:var(--bg-primary);padding:2rem;border-radius:20px;box-shadow:var(--shadow-light);transition:transform .3s ease}
+.service-card,.example-card{background:var(--bg-primary);padding:2rem;border-radius:20px;box-shadow:var(--shadow-light);transition:transform .3s ease; margin-bottom: 2rem;}
 .service-card:hover,.example-card:hover{transform:translateY(-5px)}
 .service-card i,.example-card i{font-size:2rem;margin-bottom:1rem;color:var(--primary-color)}
 
@@ -445,12 +445,14 @@ section{padding:6rem 0}
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .faq-answer {
     font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.7;
+    text-align: center;
 }
 
 .faq-answer a {
