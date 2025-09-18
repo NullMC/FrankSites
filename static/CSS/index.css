@@ -231,17 +231,13 @@ nav{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;al
     position: relative;
 }
 
-.hero-image img {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    border: 6px solid rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-heavy);
-    transition: transform 0.3s ease;
-}
 
-.hero-image:hover img {
-    transform: scale(1.05);
+#canvas-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: auto;
 }
 
 /*************** SECTIONS ***************/
@@ -251,7 +247,7 @@ section{padding:6rem 0}
 .container{max-width:1200px;margin:0 auto;padding:0 2rem}
 
 /*************** SKILLS ***************/
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;}
 .skill-category{background:var(--bg-primary);padding:2rem;border-radius:20px;box-shadow:var(--shadow-medium);transition:transform .3s ease}
 .skill-category:hover{transform:translateY(-5px)}
 .skill-category h3{font-size:1.4rem;font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}

@@ -7,6 +7,10 @@
     <title>FrankSitez - personal portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
     <link rel="stylesheet" href="static/CSS/index.css">
     <link rel="shortcut icon" href="static/CSS/IMGS/profile-pic.png" type="image/x-icon">
 </head>
@@ -50,7 +54,7 @@
                 </a>
             </div>
             <div class="hero-image">
-                <img src="static/CSS/IMGS/logo.png" alt="Frank" />
+                <div id="canvas-container"></div>
             </div>
         </div>
     </section>
@@ -141,7 +145,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Pizzeria L'angoletto</h3>
                         <span class="project-year">2025</span>
-                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">menù online della pizzeria e antipasteria L’Angoletto di Bitritto (BA). Semplice e funzionale, pensato per stupire e consultare facilmente le proposte e i prezzi. </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Menù online della pizzeria e antipasteria L’Angoletto di Bitritto (BA). Semplice e funzionale, pensato per stupire e consultare facilmente le proposte e i prezzi. </p>
                         <a href="https://menuangolettobitritto.com/" target="_blank" class="project-link">
                             Visualizza<i class="fas fa-external-link-alt"></i>
                         </a>
@@ -184,16 +188,16 @@
                 <p>Studio creativo di layout accattivanti</p>
             </div>
             <div class="service-card">
-                <i class="fas fa-microchip"></i>
+                <i class="fas fa-key"></i>
                 <h4>Accessori Smart</h4>
                 <p>Gadget personalizzabili che sfruttano la tecnologia per stupire.</p>
             </div>
             </div>
             <div class="nfc-examples fade-in-up">
             <div class="example-card">
-                <i class="fas fa-key"></i>
-                <h4>Portachiavi Smart</h4>
-                <p>Un tap per condividere contatti, link, social e tanto altro</p>
+                <i class="fas fa-microchip"></i>
+                <h4>Siti web personalizzati</h4>
+                <p>Metti in mostra te o la tua attività nella maniera più all'avanguardia possibile, con un sito web dedicato e personalizzato</p>
             </div>
             <div class="example-card">
                 <i class="fas fa-receipt"></i>
