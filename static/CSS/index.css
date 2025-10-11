@@ -895,8 +895,8 @@ body.dark-mode footer {
     display: none;
 }
 
-/* Responsive - max 768px */
-@media (max-width: 768px) {
+
+@media (max-width: 810px) {
     /* Barra progresso scroll */
     .scroll-progress {
         height: 3px;
