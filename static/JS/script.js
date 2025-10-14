@@ -1,46 +1,112 @@
-document.addEventListener('DOMContentLoaded',()=>{
-  const toggle=document.getElementById('themeToggle');
-  const body=document.body;
-  // initial state
-  if(localStorage.getItem('theme')==='dark'){
-    body.classList.add('dark-mode');
-    toggle.innerHTML='<i class="fas fa-sun"></i>';
-  }
-  toggle.addEventListener('click',()=>{
-    body.classList.toggle('dark-mode');
-    const isDark=body.classList.contains('dark-mode');
-    toggle.innerHTML=isDark?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
-    localStorage.setItem('theme',isDark?'dark':'light');
-  });
-});
+// We'll initialize UI parts once DOM is ready. Many DOM queries were at top-level and
+// could throw if elements are missing; move them into DOMContentLoaded with guards.
+
+function initLoaderAndParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+
+    if (particlesContainer) {
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Controlla se il sito è già stato visitato in questa sessione
+    const hasVisited = sessionStorage.getItem('siteVisited');
+    const loaderEl = document.getElementById('loader-screen');
+    const mainSiteEl = document.getElementById('main-site');
+
+    if (!loaderEl || !mainSiteEl) return;
+
+    if (hasVisited) {
+        // Se già visitato, mostra direttamente il sito
+        loaderEl.style.display = 'none';
+        mainSiteEl.classList.add('visible');
+    } else {
+        // Prima visita della sessione, mostra il loader
+        sessionStorage.setItem('siteVisited', 'true');
+
+        // Timer per nascondere il loader dopo l'animazione
+        setTimeout(function() {
+            loaderEl.classList.add('fade-out');
+
+            setTimeout(function() {
+                loaderEl.style.display = 'none';
+                mainSiteEl.classList.add('visible');
+            }, 1000);
+        }, 3500); // Attende che le animazioni finiscano
+    }
+}
+
+
+function initThemeToggle() {
+        const toggle = document.getElementById('themeToggle');
+        const body = document.body;
+        if (!toggle) return;
+
+        // initial state
+        if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+                // ensure correct icon on load
+                toggle.innerHTML = body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+}
 
 // FAQ Slider functionality
 let currentFaqIndex = 0;
-const faqContainer = document.getElementById('faqContainer');
-const faqDots = document.querySelectorAll('.faq-dot');
-const totalFaqs = 4;
+let faqContainer = null;
+let faqDots = [];
+let totalFaqs = 0;
 
 function showFaq(index) {
+    if (!faqContainer) return;
     currentFaqIndex = index;
     faqContainer.style.transform = `translateX(-${index * 100}%)`;
-    
+
     faqDots.forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
 }
 
 function nextFaq() {
-    const nextIndex = (currentFaqIndex + 1) % totalFaqs;
+    const nextIndex = (currentFaqIndex + 1) % Math.max(totalFaqs, 1);
     showFaq(nextIndex);
 }
 
 function previousFaq() {
-    const prevIndex = (currentFaqIndex - 1 + totalFaqs) % totalFaqs;
+    const prevIndex = (currentFaqIndex - 1 + Math.max(totalFaqs, 1)) % Math.max(totalFaqs, 1);
     showFaq(prevIndex);
 }
 
-function currentFaq(index) {
+function setCurrentFaq(index) {
     showFaq(index);
+}
+
+function initFaqSlider() {
+    faqContainer = document.getElementById('faqContainer');
+    faqDots = Array.from(document.querySelectorAll('.faq-dot'));
+    totalFaqs = faqContainer ? faqContainer.children.length : faqDots.length;
+
+    if (!faqContainer || faqDots.length === 0) return;
+
+    // Attach click handlers
+    faqDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => setCurrentFaq(i));
+    });
 }
 
 // Smooth scrolling for navigation
@@ -58,13 +124,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Header scroll effect
+// Header scroll effect: ensure header exists and toggle class rather than mixing inline styles
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
+    if (!header) return;
 
     if (window.scrollY > 100) {
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        header.classList.add('scrolled');
     } else {
-        header.classList.remove("scrolled");
+        header.classList.remove('scrolled');
     }
 });
 
@@ -105,15 +173,18 @@ function updateScrollProgress() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
-    
+    if (!scrollProgressBar) return;
+
     scrollProgressBar.style.width = `${Math.min(scrollProgress, 100)}%`;
-    
+
     // Nascondi la barra quando si è in cima
     const progressContainer = document.querySelector('.scroll-progress');
-    if (scrollTop <= 50) {
-        progressContainer.style.opacity = '0.5';
-    } else {
-        progressContainer.style.opacity = '1';
+    if (progressContainer) {
+        if (scrollTop <= 50) {
+            progressContainer.style.opacity = '0.5';
+        } else {
+            progressContainer.style.opacity = '1';
+        }
     }
 }
 
@@ -321,6 +392,17 @@ document.addEventListener('touchmove', (e) => {
 
 // Inizializza quando il DOM è caricato
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM caricato, inizializzo ParticleSystem...');
-    new ParticleSystem();
+    console.log('DOM caricato, inizializzo componenti...');
+    initLoaderAndParticles();
+    initThemeToggle();
+    initFaqSlider();
+
+    // Initialize ParticleSystem only if canvas container exists and THREE is available
+    const canvasContainer = document.getElementById('canvas-container');
+    if (canvasContainer && typeof THREE !== 'undefined') {
+        console.log('inizializzo ParticleSystem...');
+        new ParticleSystem();
+    } else if (canvasContainer) {
+        console.error('Three.js non è disponibile. Aggiungi il CDN o bundle Three.js per vedere il canvas.');
+    }
 });
