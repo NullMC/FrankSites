@@ -1,6 +1,3 @@
-// We'll initialize UI parts once DOM is ready. Many DOM queries were at top-level and
-// could throw if elements are missing; move them into DOMContentLoaded with guards.
-
 function initLoaderAndParticles() {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
@@ -16,7 +13,7 @@ function initLoaderAndParticles() {
         }
     }
 
-    // Controlla se il sito è già stato visitato in questa sessione
+
     const hasVisited = sessionStorage.getItem('siteVisited');
     const loaderEl = document.getElementById('loader-screen');
     const mainSiteEl = document.getElementById('main-site');
@@ -24,14 +21,14 @@ function initLoaderAndParticles() {
     if (!loaderEl || !mainSiteEl) return;
 
     if (hasVisited) {
-        // Se già visitato, mostra direttamente il sito
+        
         loaderEl.style.display = 'none';
         mainSiteEl.classList.add('visible');
     } else {
-        // Prima visita della sessione, mostra il loader
+        
         sessionStorage.setItem('siteVisited', 'true');
 
-        // Timer per nascondere il loader dopo l'animazione
+        
         setTimeout(function() {
             loaderEl.classList.add('fade-out');
 
@@ -39,7 +36,7 @@ function initLoaderAndParticles() {
                 loaderEl.style.display = 'none';
                 mainSiteEl.classList.add('visible');
             }, 1000);
-        }, 3500); // Attende che le animazioni finiscano
+        }, 3500);
     }
 }
 
@@ -49,12 +46,12 @@ function initThemeToggle() {
         const body = document.body;
         if (!toggle) return;
 
-        // initial state
+        
         if (localStorage.getItem('theme') === 'dark') {
                 body.classList.add('dark-mode');
                 toggle.innerHTML = '<i class="fas fa-sun"></i>';
         } else {
-                // ensure correct icon on load
+                
                 toggle.innerHTML = body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         }
 
@@ -66,50 +63,64 @@ function initThemeToggle() {
         });
 }
 
-// FAQ Slider functionality
-let currentFaqIndex = 0;
-let faqContainer = null;
-let faqDots = [];
-let totalFaqs = 0;
-
-function showFaq(index) {
-    if (!faqContainer) return;
-    currentFaqIndex = index;
-    faqContainer.style.transform = `translateX(-${index * 100}%)`;
-
-    faqDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-}
-
-function nextFaq() {
-    const nextIndex = (currentFaqIndex + 1) % Math.max(totalFaqs, 1);
-    showFaq(nextIndex);
-}
-
-function previousFaq() {
-    const prevIndex = (currentFaqIndex - 1 + Math.max(totalFaqs, 1)) % Math.max(totalFaqs, 1);
-    showFaq(prevIndex);
-}
-
-function setCurrentFaq(index) {
-    showFaq(index);
-}
-
 function initFaqSlider() {
-    faqContainer = document.getElementById('faqContainer');
-    faqDots = Array.from(document.querySelectorAll('.faq-dot'));
-    totalFaqs = faqContainer ? faqContainer.children.length : faqDots.length;
+    const faqContainer = document.getElementById('faqContainer');
+    const faqDotsContainer = document.getElementById('faqDotsContainer');
+    const prevButton = document.getElementById('faqPrev');
+    const nextButton = document.getElementById('faqNext');
 
-    if (!faqContainer || faqDots.length === 0) return;
+    if (!faqContainer || !faqDotsContainer || !prevButton || !nextButton) {
+        console.warn('Elementi dello slider FAQ non trovati.');
+        return;
+    }
 
-    // Attach click handlers
-    faqDots.forEach((dot, i) => {
-        dot.addEventListener('click', () => setCurrentFaq(i));
+    let currentFaqIndex = 0;
+    const faqCards = faqContainer.children;
+    const totalFaqs = faqCards.length;
+    let faqDots = [];
+
+    
+    faqDotsContainer.innerHTML = '';
+    for (let i = 0; i < totalFaqs; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'faq-dot';
+        dot.addEventListener('click', () => showFaq(i));
+        faqDotsContainer.appendChild(dot);
+        faqDots.push(dot);
+    }
+
+    
+    function showFaq(index) {
+        
+        if (index >= totalFaqs) {
+            index = 0;
+        } else if (index < 0) {
+            index = totalFaqs - 1;
+        }
+
+        currentFaqIndex = index;
+        faqContainer.style.transform = `translateX(-${index * 100}%)`;
+
+        faqDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    
+    prevButton.addEventListener('click', () => {
+        showFaq(currentFaqIndex - 1);
     });
+
+    nextButton.addEventListener('click', () => {
+        showFaq(currentFaqIndex + 1);
+    });
+
+    
+    showFaq(0);
 }
 
-// Smooth scrolling for navigation
+
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -123,8 +134,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Header scroll effect
-// Header scroll effect: ensure header exists and toggle class rather than mixing inline styles
+
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     if (!header) return;
@@ -136,7 +146,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Intersection Observer for animations
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -147,11 +157,12 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all fade-in-up elements
+
 document.querySelectorAll('.fade-in-up').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
@@ -159,12 +170,12 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
     observer.observe(el);
 });
 
-// Add loading animation
+
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
 });
 
-// Initialize body opacity
+
 document.body.style.opacity = '0';
 document.body.style.transition = 'opacity 0.5s ease';
 
@@ -177,7 +188,7 @@ function updateScrollProgress() {
 
     scrollProgressBar.style.width = `${Math.min(scrollProgress, 100)}%`;
 
-    // Nascondi la barra quando si è in cima
+    
     const progressContainer = document.querySelector('.scroll-progress');
     if (progressContainer) {
         if (scrollTop <= 50) {
@@ -188,10 +199,10 @@ function updateScrollProgress() {
     }
 }
 
-// Event listener per lo scroll
+
 window.addEventListener('scroll', updateScrollProgress);
 
-// Inizializza la barra al caricamento
+
 document.addEventListener('DOMContentLoaded', updateScrollProgress);
 
 class ParticleSystem {
@@ -209,68 +220,51 @@ class ParticleSystem {
     }
 
     init() {
-        // Verifica se il container esiste
         const container = document.getElementById('canvas-container');
+        if (!container) return;
 
-        // Verifica se Three.js è caricato
         if (typeof THREE === 'undefined') {
-            console.error('ERRORE: Three.js non è caricato! Aggiungi il CDN al tuo HTML.');
+            console.error('ERRORE: Three.js non è caricato!');
             return;
         }
 
-        // Scena
         this.scene = new THREE.Scene();
-        
-        // Camera
-        this.camera = new THREE.PerspectiveCamera(
-            75, 
-            window.innerWidth / window.innerHeight, 
-            0.1, 
-            1000
-        );
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.z = 5;
-        
-        // Renderer
-        this.renderer = new THREE.WebGLRenderer({ 
-            alpha: true,
-            antialias: true 
-        });
+        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setClearColor(0x000000, 0);
         
         container.appendChild(this.renderer.domElement);
         
-        // Luci
         const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
         this.scene.add(ambientLight);
-        
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight.position.set(5, 5, 5);
         this.scene.add(directionalLight);
-        
         const pointLight = new THREE.PointLight(0xff6b6b, 1, 100);
         pointLight.position.set(-5, 5, 0);
         this.scene.add(pointLight);
 
-        console.log('Three.js inizializzato correttamente!');
+    
     }
 
     createParticles() {
-        const particleCount = 300; // Aumentato da 150 a 300
+        const particleCount = 300;
         const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         
         for(let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 30;     // x - area leggermente più ampia
-            positions[i + 1] = (Math.random() - 0.5) * 30; // y - area leggermente più ampia
-            positions[i + 2] = (Math.random() - 0.5) * 30; // z - area leggermente più ampia
+            positions[i] = (Math.random() - 0.5) * 30;
+            positions[i + 1] = (Math.random() - 0.5) * 30;
+            positions[i + 2] = (Math.random() - 0.5) * 30;
         }
         
         particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         
         const particleMaterial = new THREE.PointsMaterial({
             color: 0xffffff,
-            size: 0.08, // Aumentato da 0.05 a 0.08
+            size: 0.08,
             transparent: true,
             opacity: 0.8
         });
@@ -302,12 +296,9 @@ class ParticleSystem {
         
         requestAnimationFrame(() => this.animate());
         
-        // Animazione particelle con movimento fluido
         if (this.particles) {
-            this.particles.rotation.x += 0.0005; // Velocità leggermente aumentata
-            this.particles.rotation.y += 0.001;  // Velocità leggermente aumentata
-            
-            // Effetto leggero di movimento basato sul mouse
+            this.particles.rotation.x += 0.0005;
+            this.particles.rotation.y += 0.001;
             this.particles.rotation.x += this.mouse.y * 0.0001;
             this.particles.rotation.y += this.mouse.x * 0.0001;
         }
@@ -317,13 +308,11 @@ class ParticleSystem {
     }
 }
 
-// Elementi DOM
 const hamburger = document.getElementById('hamburger');
 const offcanvas = document.getElementById('offcanvas');
 const offcanvasOverlay = document.getElementById('offcanvasOverlay');
 const offcanvasLinks = document.querySelectorAll('.offcanvas-nav a');
 
-// Funzione per aprire l'offcanvas
 function openOffcanvas() {
     hamburger.classList.add('active');
     offcanvas.classList.add('active');
@@ -331,7 +320,6 @@ function openOffcanvas() {
     document.body.classList.add('offcanvas-open');
 }
 
-// Funzione per chiudere l'offcanvas
 function closeOffcanvas() {
     hamburger.classList.remove('active');
     offcanvas.classList.remove('active');
@@ -339,47 +327,37 @@ function closeOffcanvas() {
     document.body.classList.remove('offcanvas-open');
 }
 
-// Event listeners
-hamburger.addEventListener('click', () => {
-    if (offcanvas.classList.contains('active')) {
-        closeOffcanvas();
-    } else {
-        openOffcanvas();
-    }
-});
-
-// Chiudi cliccando sull'overlay
-offcanvasOverlay.addEventListener('click', closeOffcanvas);
-
-// Chiudi cliccando sui link di navigazione
-offcanvasLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        closeOffcanvas();
-        // Smooth scroll al target
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-            setTimeout(() => {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
+if (hamburger && offcanvas && offcanvasOverlay) {
+    hamburger.addEventListener('click', () => {
+        if (offcanvas.classList.contains('active')) {
+            closeOffcanvas();
+        } else {
+            openOffcanvas();
         }
     });
-});
 
-// Chiudi con tasto ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && offcanvas.classList.contains('active')) {
-        closeOffcanvas();
-    }
-});
+    offcanvasOverlay.addEventListener('click', closeOffcanvas);
 
-// Gestisci ridimensionamento finestra
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && offcanvas.classList.contains('active')) {
-        closeOffcanvas();
-    }
-});
+    offcanvasLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeOffcanvas();
+        
+        });
+    });
 
-// Prevent scroll when offcanvas is open
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && offcanvas.classList.contains('active')) {
+            closeOffcanvas();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 800 && offcanvas.classList.contains('active')) {
+            closeOffcanvas();
+        }
+    });
+}
+
 document.addEventListener('touchmove', (e) => {
     if (document.body.classList.contains('offcanvas-open') && 
         !offcanvas.contains(e.target)) {
@@ -388,21 +366,19 @@ document.addEventListener('touchmove', (e) => {
 }, { passive: false });
 
 
-
-
-// Inizializza quando il DOM è caricato
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM caricato, inizializzo componenti...');
     initLoaderAndParticles();
     initThemeToggle();
     initFaqSlider();
 
-    // Initialize ParticleSystem only if canvas container exists and THREE is available
     const canvasContainer = document.getElementById('canvas-container');
-    if (canvasContainer && typeof THREE !== 'undefined') {
-        console.log('inizializzo ParticleSystem...');
+    if (canvasContainer && typeof THREE !== 'undefined' && window.innerWidth > 800) {
+        console.log('Inizializzo ParticleSystem (Desktop)...');
         new ParticleSystem();
+    } else if (canvasContainer && window.innerWidth <= 800) {
+        console.log('ParticleSystem non caricato (Mobile).');
     } else if (canvasContainer) {
-        console.error('Three.js non è disponibile. Aggiungi il CDN o bundle Three.js per vedere il canvas.');
+        console.error('Three.js non è disponibile.');
     }
 });
