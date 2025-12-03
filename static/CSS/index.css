@@ -29,7 +29,7 @@ body.dark-mode {
 
 *{margin:0;padding:0;box-sizing:border-box}
 html { scroll-behavior: smooth; } 
-body{font-family:'Inter',sans-serif;color:var(--text-primary);background:var(--bg-secondary);line-height:1.6;overflow-x:hidden;transition:background .3s ease,color .3s ease}
+body{overflow-x:hidden;font-family:'Inter',sans-serif;color:var(--text-primary);background:var(--bg-secondary);line-height:1.6;overflow-x:hidden;transition:background .3s ease,color .3s ease}
 a{text-decoration:none;color:inherit}
 
 
@@ -281,6 +281,15 @@ code[class*="language-"] {
         align-items: flex-start;
         padding-top: 60px;
     }
+    
+    .hero-content{
+        margin-top: -15rem;
+        max-height: 100vh;
+    }
+
+    .mobile-logo a img {
+        margin-left: 1rem;
+    }
 
     .hero-image {
         max-width: 100%;
@@ -297,9 +306,6 @@ code[class*="language-"] {
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 40px 15px;
-    }
 
     pre[class*="language-"] {
         padding: 16px 12px;
@@ -423,7 +429,7 @@ body.dark-mode footer {
     .scroll-progress {
         height: 3px;
     }
-
+    
     
     .desktop-nav {
         display: none;
