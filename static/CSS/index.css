@@ -190,8 +190,8 @@ body.dark-mode .offcanvas { background: #1e293b; box-shadow: -10px 0 30px rgba(0
 .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: center; position: relative; z-index: 2; }
 .hero-text h1 { font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; color: white; margin-bottom: 1rem; line-height: 1.1; }
 .hero-text p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; line-height: 1.7; }
-.cta-button { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--primary-color); padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; box-shadow: var(--shadow-medium); }
-.cta-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-heavy); background: var(--bg-secondary); }
+.cta-button { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-secondary); color: var(--primary-color); padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; box-shadow: var(--shadow-medium); }
+.cta-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-heavy); }
 .hero-image {
     position: relative;
 }
