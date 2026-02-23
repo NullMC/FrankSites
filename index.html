@@ -3,38 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>FrankSitez - Portfolio Sviluppatore Web & Digital Partner</title>
+    <title>FrankSitez — Sviluppatore Web & Digital Partner</title>
     <meta name="description" content="Portfolio di Francesco (Frank), Sviluppatore Web e Digital Partner. Specializzato in sviluppo Front-End, soluzioni IoT e strategie digitali.">
     <meta name="keywords" content="sviluppatore web, digital partner, front-end developer, portfolio, francesco, frank, bari, sviluppo siti web, iot, nfc, web developer bari">
     <meta name="author" content="Francesco (Frank)">
-
-    <meta property="og:title" content="FrankSitez - Portfolio Sviluppatore Web & Digital Partner">
-    <meta property="og:description" content="Trasformo idee in esperienze digitali straordinarie. Scopri i miei progetti.">
-    <meta property="og:image" content="https://franksitez.com/static/CSS/IMGS/logo.png"> <meta property="og:url" content="https://franksitez.com"> <meta property="og:type" content="website">
+    <meta property="og:title" content="FrankSitez — Sviluppatore Web & Digital Partner">
+    <meta property="og:description" content="Trasformo idee in esperienze digitali straordinarie.">
+    <meta property="og:url" content="https://franksitez.com">
+    <meta property="og:type" content="website">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
 
-
     <link rel="stylesheet" href="static/CSS/index.css">
-    
     <link rel="shortcut icon" href="static/CSS/IMGS/profile-pic.webp" type="image/webp">
 </head>
 <body>
 
+    <!-- LOADER -->
     <div id="loader-screen">
         <div class="particles" id="particles"></div>
         <div class="loader-content">
@@ -48,6 +41,7 @@
         </div>
     </div>
 
+    <!-- MAIN -->
     <div id="main-site">
         <div class="scroll-progress">
             <div class="scroll-progress-bar" id="scrollProgressBar"></div>
@@ -55,10 +49,14 @@
 
         <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema"><i class="fas fa-moon"></i></button>
 
+        <!-- NAVBAR -->
         <header>
             <nav class="desktop-nav">
-                <div class="nav-image">
-                    <a href="#"><img src="static/CSS/IMGS/logo.png" alt="Frank Logo" /></a>
+                <div class="nav-brand">
+                    <a href="#">
+                        <img src="static/CSS/IMGS/logo.png" alt="Frank Logo" class="nav-logo" />
+                        <span class="nav-wordmark">Frank<span>Sitez</span></span>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#about">Chi sono</a></li>
@@ -66,7 +64,7 @@
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#skills">Competenze</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contatti</a></li>
+                    <li><a href="#contact" class="nav-cta">Collaboriamo</a></li>
                 </ul>
             </nav>
 
@@ -74,7 +72,7 @@
                 <div class="mobile-logo">
                     <a href="#"><img src="static/CSS/IMGS/logo.png" alt="Frank Logo" /></a>
                 </div>
-                <button class="hamburger" id="hamburger">
+                <button class="hamburger" id="hamburger" aria-label="Menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -83,315 +81,424 @@
         </header>
 
         <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
-
         <div class="offcanvas" id="offcanvas">
             <div class="offcanvas-header">
                 <img src="static/CSS/IMGS/logo.png" alt="Frank">
                 <h3>Frank</h3>
-                <p>Digital Partner</p>
+                <p>Digital Partner · Bari, IT</p>
             </div>
             <div class="offcanvas-body">
                 <ul class="offcanvas-nav">
                     <li><a href="#about"><i class="fas fa-user"></i> Chi sono</a></li>
-                    <li><a href="#services"><i class="fas fa-concierge-bell"></i> Servizi</a></li>
+                    <li><a href="#services"><i class="fas fa-layer-group"></i> Servizi</a></li>
                     <li><a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
                     <li><a href="#skills"><i class="fas fa-code"></i> Competenze</a></li>
-                    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contatti</a></li>
+                    <li><a href="#faq"><i class="fas fa-circle-question"></i> FAQ</a></li>
+                    <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contatti</a></li>
                 </ul>
             </div>
             <div class="offcanvas-footer">
-                <p>&copy; 2025 Frank - Digital Partner</p>
+                <p>&copy; 2026 FrankSitez</p>
             </div>
         </div>
 
         <main>
-            <section class="hero">
+
+            <!-- ═══════════════ HERO ═══════════════ -->
+            <section class="hero" id="hero">
+                <div class="hero-bg-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                </div>
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h1><span style="font-size: 2rem;">Ciao!</span><br/>Sono Francesco</h1>
-                        
-                        <div class="skills-list">
-                        <div class="code-snippet-wrapper">
-                            <div class="code-header">
-                                <div class="code-dots">
-                                    <div class="dot red"></div>
-                                    <div class="dot yellow"></div>
-                                    <div class="dot green"></div>
-                                </div>
-                                <div class="code-title">script.py</div>
-                            </div>
-                            
-                            <pre class="line-numbers"><code class="language-python">
-print("If you can think of it...");
-print("I can make it!");
-</code></pre>
+                    <div class="hero-left">
+                        <div class="hero-badge">
+                            <span class="badge-dot"></span>
+                            Disponibile per nuovi progetti
+                        </div>
+                        <h1 class="hero-title">
+                            Ciao, sono<br>
+                            <span class="hero-name">Francesco</span>
+                        </h1>
+                        <p class="hero-tagline">Sviluppatore Web & Digital Partner</p>
+                        <p class="hero-description">
+                            Dalle idee alla realta, 
+                            Il tuo partner digitale a 360°.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn-primary">
+                                Iniziamo <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#portfolio" class="btn-ghost">
+                                Vedi i progetti
+                            </a>
                         </div>
                     </div>
-                        <a href="#contact" class="cta-button">
-                            Iniziamo un Progetto <i class="fas fa-rocket"></i>
-                        </a>
-                    </div>
-                    <div class="hero-image">
+                    <div class="hero-right">
+                        <!-- FOTO PROFILO — sostituisci src con il tuo percorso immagine -->
                         <div id="canvas-container"></div>
                     </div>
                 </div>
+                <div class="hero-scroll-hint">
+                    <span>Scorri</span>
+                    <div class="scroll-line"></div>
+                </div>
             </section>
 
+            <!-- ═══════════════ ABOUT ═══════════════ -->
             <section class="about" id="about">
                 <div class="container">
-                    <h2 class="section-title fade-in-up">Chi Sono</h2>
-                    <p class="section-subtitle fade-in-up">Studente appassionato, sviluppatore ambizioso</p>
-                    <div class="skills-list">
-                        <div class="code-snippet-wrapper">
-                            <div class="code-header">
-                                <div class="code-dots">
-                                    <div class="dot red"></div>
-                                    <div class="dot yellow"></div>
-                                    <div class="dot green"></div>
-                                </div>
-                                <div class="code-title">index.html</div>
-                            </div>
-                            
-                            <pre class="line-numbers"><code class="language-markup">
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;Developer&gt;
-        &lt;GraphicDesigner&gt;
-        &lt;DigitalPartner&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-                        </div>
-                    </div>
+                    <div class="section-label fade-in-up">Chi sono</div>
                     <div class="about-grid">
                         <div class="about-text fade-in-up">
-                            <div class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Bari, Italia</span>
-                            </div>
-                            <h3>La Mia Storia</h3>
-                            <p>Sono Francesco, o Frank se preferite. La mia passione è trasformare concetti complessi in soluzioni digitali eleganti e funzionali. Come Digital Partner, non mi limito a scrivere codice: collaboro con te per capire i tuoi obiettivi e costruire l'esperienza web perfetta.</p>
-                            <p>Attualmente studente presso l'ITT Panetti Pitagora di Bari, unisco una solida formazione in informatica e telecomunicazioni con l'esperienza pratica su progetti reali, dallo sviluppo web all'IoT.</p>
+                            <h2>Studente, sviluppatore,<br><em>digital partner</em></h2>
+                            <p>Sono Francesco — Frank per gli amici. Dai vita alle tue idee! Con esperienza su progetti reali, progetto e sviluppo soluzioni digitali e innovative!</p>
+                            <p>Non mi limito a scrivere codice: collaboro con te per capire i tuoi obiettivi, per definire la strategia e costruire la piattaforma web perfetta per la te e la tua attività.</p>
                         </div>
-                        <div class="about-image fade-in-up">
-                            <div style="background: var(--primary-color); border-radius: 20px; padding: 3rem; text-align: center; color: white;">
-                                <i class="fas fa-graduation-cap" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.8;"></i>
-                                <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">ITT Panetti Pitagora</h4>
-                                <p style="opacity: 0.9;">Informatica e Telecomunicazioni</p>
-                                <p style="opacity: 0.7; margin-top: 1rem;">Specializzazione in sviluppo web & IoT</p>
+                        <div class="about-code-panel fade-in-up">
+                            <div class="code-snippet-wrapper">
+                                <div class="code-header">
+                                    <div class="code-dots">
+                                        <div class="dot red"></div>
+                                        <div class="dot yellow"></div>
+                                        <div class="dot green"></div>
+                                    </div>
+                                    <div class="code-title">frank.json</div>
+                                </div>
+                                <pre class="line-numbers"><code class="language-javascript">{
+  "name": "Francesco",
+  "alias": "Frank",
+  "location": "Bari, Italy",
+  "role": [
+    "Web Developer",
+    "Graphic Designer",
+    "Digital Partner"
+  ],
+  "specialization": [
+    "Informatica",
+    "Telecomunicazioni",
+    "IoT & NFC"
+  ],
+  "available": true
+}</code></pre>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ═══════════════ SERVICES ═══════════════ -->
             <section class="services" id="services">
                 <div class="container">
-                    <h2 class="section-title fade-in-up">I Miei Servizi</h2>
-                    <p class="section-subtitle fade-in-up">Soluzioni digitali su misura per te</p>
-
+                    <div class="section-label fade-in-up">Servizi</div>
+                    <div class="section-header fade-in-up">
+                        <h2>Cosa posso fare<br>per te</h2>
+                        <p>Soluzioni smart su misura, dall'idea al deploy.</p>
+                    </div>
                     <div class="services-grid fade-in-up">
-                        <div class="service-card">
-                            <i class="fas fa-laptop-code"></i>
-                            <h4>Sviluppo Web Completo</h4>
-                            <p>Siti web moderni, responsive e ottimizzati, per far approdare la tua attivitá anche nelle strade del web. Soddisfando le tue esigenze, con un confronto diretto e costante, a partite dal design, allo sviluppo, fino al deployment.</p>
+                        <div class="service-card featured">
+                            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h4>Sviluppo Web</h4>
+                            <p>Siti web moderni, responsive e ottimizzati per portare la tua attività online. Design, sviluppo e deployment: tutto in un unico pacchetto.</p>
+                            <div class="service-tags">
+                                <span>HTML/CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span>
+                            </div>
                         </div>
                         <div class="service-card">
-                            <i class="fa-solid fa-palette"></i>
-                            <h4>Grafiche e Designs</h4>
-                            <p>Loghi, progetti e grafiche di qualsiasi tipo, per ogni tuo progetto e esigenza.</p>
+                            <div class="service-icon"><i class="fas fa-palette"></i></div>
+                            <h4>Design & Grafica</h4>
+                            <p>Loghi, identità visiva e grafiche di ogni tipo. Un'immagine coordinata che comunica il valore del tuo brand.</p>
+                            <div class="service-tags">
+                                <span>Branding</span><span>UI/UX</span><span>Logo</span>
+                            </div>
                         </div>
                         <div class="service-card">
-                            <i class="fas fa-handshake"></i>
+                            <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                            <h4>IoT & Smart Accessori</h4>
+                            <p>Soluzioni NFC e IoT per connettere il mondo fisico al digitale. Biglietti da visita smart, menu interattivi, esperienze uniche per i tuoi clienti.</p>
+                            <div class="service-tags">
+                                <span>NFC</span><span>IoT</span><span>Smart Objects</span>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon"><i class="fas fa-handshake"></i></div>
                             <h4>Digital Partnership</h4>
-                            <p>Consulenza e strategia digitale, curando la tua identità online per un'immagine coordinata ed efficace.</p>
-                        </div>
-                        <div class="service-card">
-                            <i class="fas fa-microchip"></i>
-                            <h4>Soluzioni IoT & Smart</h4>
-                            <p>Accessori smart e interattivi,per connettere il mondo fisico a quello digitale, creando esperienze uniche per te e i tuoi clienti.</p>
+                            <p>Consulenza e strategia digitale continua. Non solo un servizio, ma un partner che cresce con te e tiene d'occhio la tua presenza online.</p>
+                            <div class="service-tags">
+                                <span>Consulenza</span><span>SEO</span><span>Strategia</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ═══════════════ PORTFOLIO ═══════════════ -->
             <section class="portfolio" id="portfolio">
                 <div class="container">
-                    <h2 class="section-title fade-in-up">Portfolio Progetti</h2>
-                    <p class="section-subtitle fade-in-up">Soluzioni che fanno la differenza</p>
-                    
+                    <div class="section-label fade-in-up">Portfolio</div>
+                    <div class="section-header fade-in-up">
+                        <h2>Portfolio progetti</h2>
+                    </div>
                     <div class="projects-grid">
+
                         <div class="project-card fade-in-up">
                             <div class="project-image">
-                                <div style="background: var(--bg-gradient); height: 100%; display: flex; align-items: center; justify-content: center">
-                                    <img src="static/CSS/IMGS/angoletto.webp" alt="Pizzeria L'angoletto" style="width: 10rem; height: 10rem;">
+                                <div class="project-image-bg">
+                                    <img src="static/CSS/IMGS/angoletto.webp" alt="Pizzeria L'angoletto" />
+                                </div>
+                                <div class="project-overlay">
+                                    <a href="https://menuangolettobitritto.com/" target="_blank" class="project-visit-btn">
+                                        Apri sito <i class="fas fa-arrow-up-right-from-square"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="project-content">
+                                <div class="project-meta">
+                                    <span class="project-year">2024</span>
+                                    <div class="project-type-tags">
+                                        <span>Logo</span><span>Design</span><span>Dev</span>
+                                    </div>
+                                </div>
                                 <h3 class="project-title">Pizzeria L'angoletto</h3>
-                                <span class="project-year">2024</span>
-                                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Menù digitale semplice e funzionale. <br><span style="color: var(--primary-color);"><b>Logo, Design, Sviluppo & Consulting</b></span></p>
-                                <a href="https://menuangolettobitritto.com/" target="_blank" class="project-link">
-                                    Visualizza<i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="project-card fade-in-up">
-                            <div class="project-image">
-                                <div style="background: var(--bg-gradient); height: 100%; display: flex; align-items: center; justify-content: center">
-                                    <img src="static/CSS/IMGS/NextStep.webp" alt="NextStep" style="width: 10rem; height: 10rem;">
-                                </div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">NextStep Platform</h3>
-                                <span class="project-year">2024</span>
-                                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Strumento gratuito di orientamento scolastico. Nato durante un hackathon e sviluppato da studenti per studenti.</p>
-                                <a href="https://www.orientnextstep.it/" target="_blank" class="project-link">
-                                    Visualizza <i class="fas fa-external-link-alt"></i>
-                                </a>
+                                <p>Menù digitale elegante e funzionale per una pizzeria locale. Progetto completo di identità visiva e sviluppo.</p>
                             </div>
                         </div>
 
                         <div class="project-card fade-in-up">
                             <div class="project-image">
-                                <div style="background: var(--bg-gradient); height: 100%; display: flex; align-items: center; justify-content: center">
-                                    <img src="static/CSS/IMGS/oliotenerelli.webp" alt="Olio Tenerelli" style="width: 8rem; height: 8rem;">
+                                <div class="project-image-bg">
+                                    <img src="static/CSS/IMGS/NextStep.webp" alt="NextStep" />
+                                </div>
+                                <div class="project-overlay">
+                                    <a href="https://www.orientnextstep.it/" target="_blank" class="project-visit-btn">
+                                        Apri sito <i class="fas fa-arrow-up-right-from-square"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3 class="project-title">Olio Tenerelli</h3>
-                                <span class="project-year">2025</span>
-                                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Sito web dedicato alla compravendita di Olio. <br><span style="color: var(--primary-color);"><b>Logo, Design, Sviluppo & Consulting</b></span></p>
-                                <a href="https://oliotenerelli.com/" target="_blank" class="project-link">
-                                    Visualizza <i class="fas fa-external-link-alt"></i>
-                                </a>
+                                <div class="project-meta">
+                                    <span class="project-year">2024</span>
+                                    <span class="project-badge-special">Hackathon</span>
+                                    <div class="project-type-tags">
+                                        <span>Platform</span><span>Dev</span>
+                                    </div>
+                                </div>
+                                <h3 class="project-title">NextStep Platform</h3>
+                                <p>Piattaforma gratuita di orientamento scolastico. Nato da un hackathon, sviluppato da studenti per studenti.</p>
                             </div>
                         </div>
+
+                        <div class="project-card fade-in-up">
+                            <div class="project-image">
+                                <div class="project-image-bg">
+                                    <img src="static/CSS/IMGS/oliotenerelli.webp" alt="Olio Tenerelli" />
+                                </div>
+                                <div class="project-overlay">
+                                    <a href="https://oliotenerelli.com/" target="_blank" class="project-visit-btn">
+                                        Apri sito <i class="fas fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-meta">
+                                    <span class="project-year">2025</span>
+                                    <div class="project-type-tags">
+                                        <span>Logo</span><span>Design</span><span>Dev</span>
+                                    </div>
+                                </div>
+                                <h3 class="project-title">Olio Tenerelli</h3>
+                                <p>E-commerce dedicato alla vendita di olio artigianale di qualità. Progetto completo di branding e sviluppo.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
-            
+
+            <!-- ═══════════════ SKILLS ═══════════════ -->
             <section class="skills" id="skills">
                 <div class="container">
-                    <h2 class="section-title fade-in-up">Le Mie Competenze</h2>
-                    <p class="section-subtitle fade-in-up">Tecnologie moderne e soft skills per progetti di successo</p>
-                    
-                    <div class="skills-grid fade-in-up">
-                        <div class="skill-category">
-                            <h3><i class="fas fa-code"></i>Tecnologie e Linguaggi</h3>
-                            <div class="skills-list">
-                                <div class="skill-item">HTML</div>
-                                <div class="skill-item">CSS</div>
-                                <div class="skill-item">JavaScript</div>
-                                <div class="skill-item">Java</div>
-                                <div class="skill-item">Python</div> 
-                                <div class="skill-item">Php</div> 
-                                <div class="skill-item">MySQL</div>
-                                <div class="skill-item" style="width: 100%;"></div>
-                                <div class="skill-item">IoT & NFC</div>
+                    <div class="section-label fade-in-up">Competenze</div>
+                    <div class="section-header fade-in-up">
+                        <h2>Tecnologie &<br>strumenti</h2>
+                        <p>Le tecnologie con cui costruisco soluzioni.</p>
+                    </div>
+                    <div class="skills-layout fade-in-up">
+                        <div class="skills-tech">
+                            <h3>Stack Tecnico</h3>
+                            <div class="tech-grid">
+                                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                                <div class="tech-item"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+                                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                                <div class="tech-item"><i class="fab fa-java"></i><span>Java</span></div>
+                                <div class="tech-item"><i class="fab fa-php"></i><span>PHP</span></div>
+                                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                                <div class="tech-item highlight"><i class="fas fa-wifi"></i><span>IoT & NFC</span></div>
                             </div>
                         </div>
-                        <div class="skill-category fade-in-up">
-                            <h3><i class="fas fa-brain"></i> Soft Skills</h3>
-                            <ul class="soft-skills-list">
-                                <li>Pensiero critico e problem solving</li>
-                                <li>Organizzazione e gestione del tempo</li>
-                                <li>Comunicazione efficace</li>
-                                <li>Leadership e lavoro di squadra</li>
+                        <div class="skills-soft">
+                            <h3>Soft Skills</h3>
+                            <ul class="soft-list">
+                                <li>
+                                    <div class="soft-icon"><i class="fas fa-lightbulb"></i></div>
+                                    <div>
+                                        <strong>Problem Solving</strong>
+                                        <p>Approccio analitico ai problemi complessi</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="soft-icon"><i class="fas fa-comments"></i></div>
+                                    <div>
+                                        <strong>Comunicazione</strong>
+                                        <p>Dialogo diretto e continuo con il cliente</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="soft-icon"><i class="fas fa-users"></i></div>
+                                    <div>
+                                        <strong>Teamwork & Leadership</strong>
+                                        <p>Esperienza in team multidisciplinari</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="soft-icon"><i class="fas fa-clock"></i></div>
+                                    <div>
+                                        <strong>Gestione del tempo</strong>
+                                        <p>Rispetto delle scadenze, sempre</p>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ═══════════════ FAQ ═══════════════ -->
             <section class="faq" id="faq">
                 <div class="container">
-                    <h2 class="section-title fade-in-up">Domande Frequenti</h2>
-                    <p class="section-subtitle fade-in-up">Tutto quello che devi sapere sui miei servizi</p>
-                    
-                    <div class="faq-slider">
-                        <div class="faq-container" id="faqContainer">
-                            <div class="faq-card">
-                                <h3 class="faq-question">Quali sono i tempi di consegna?</h3>
-                                <div class="faq-answer">
-                                    <p>Dipende dalla complessità. Per la semplice conversione da design a codice, i tempi sono molto rapidi. Per progetti completi (design + sviluppo) si definisce un piano di lavoro. Offro anche servizi express con costi aggiuntivi.</p>
-                                </div>
-                            </div>
-                            <div class="faq-card">
-                                <h3 class="faq-question">Come pubblico il mio sito web?</h3>
-                                <div class="faq-answer">
-                                    <p>Offro supporto completo per la pubblicazione. Utilizzo piattaforme moderne come Cloudflare per hosting e domini, garantendo sicurezza, velocità e un processo di deployment automatizzato e senza stress.</p>
-                                </div>
-                            </div>
-                            <div class="faq-card">
-                                <h3 class="faq-question">Come funzionano i costi?</h3>
-                                <div class="faq-answer">
-                                    <p>Il costo si basa sulla struttura del sito: numero di pagine, complessità dei contenuti e funzionalità richieste. Contattami con i dettagli del tuo progetto e ti fornirò un preventivo personalizzato e trasparente.</p>
-                                </div>
-                            </div>
-                            <div class="faq-card">
-                                <h3 class="faq-question">Qual è il processo di sviluppo?</h3>
-                                <div class="faq-answer">
-                                    <p>Iniziamo sempre dall'approvazione del progetto grafico. Una volta definito il design, lo traduco fedelmente in codice usando le tecnologie più adatte (HTML, CSS, JavaScript, etc.), ottimizzando per reattività e performance.</p>
-                                </div>
+                    <div class="section-label fade-in-up">FAQ</div>
+                    <div class="section-header fade-in-up">
+                        <h2>Domande frequenti</h2>
+                        <p>Tutto quello che devi sapere prima di iniziare a collaborare.</p>
+                    </div>
+                    <div class="faq-list fade-in-up">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Quali sono i tempi di consegna?
+                                <i class="fas fa-plus faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Dipende dalla complessità del progetto. Per la conversione da design a codice i tempi sono molto rapidi. Per progetti completi (design + sviluppo) definiamo insieme un piano di lavoro dettagliato. Sono disponibili anche servizi express con costi aggiuntivi.</p>
                             </div>
                         </div>
-                        
-                        <button class="faq-nav faq-prev" id="faqPrev">‹</button>
-                        <button class="faq-nav faq-next" id="faqNext">›</button>
-                    </div>
-                    
-                    <div class="faq-controls" id="faqDotsContainer">
-                        <div class="faq-dot active"></div>
-                        <div class="faq-dot"></div>
-                        <div class="faq-dot"></div>
-                        <div class="faq-dot"></div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Come viene pubblicato il sito web?
+                                <i class="fas fa-plus faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Gestisco tutto il processo di pubblicazione. Utilizzo piattaforme moderne come Cloudflare per hosting e domini, garantendo sicurezza, velocità e un deployment automatizzato. Non dovrai preoccuparti di nulla.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Come funzionano i prezzi?
+                                <i class="fas fa-plus faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Il costo dipende dalla struttura del sito: numero di pagine, complessità dei contenuti e funzionalità richieste. Contattami con i dettagli del tuo progetto e riceverai un preventivo personalizzato e trasparente entro 24 ore.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Qual è il processo di lavoro?
+                                <i class="fas fa-plus faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Inizio sempre dalla definizione degli obiettivi e dall'approvazione del progetto grafico. Una volta approvato il design, procedo a svilupparlo con focus su performance e responsiveness pero ogni dispositivo.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Offri supporto dopo il deploy?
+                                <i class="fas fa-plus faq-icon"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Assolutamente sì. Come Digital Partner, sono disponibile per aggiornamenti, modifiche e supporto continuo dopo il deploy del progetto. La partnership non finisce con la consegna.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ═══════════════ CONTACT ═══════════════ -->
             <section class="contact" id="contact">
                 <div class="container">
-                    <div class="contact-card fade-in-up">
-                        <div class="contact-content">
-                            <h2 class="contact-title">Pronto per il Tuo Progetto?</h2>
-                            <p class="contact-subtitle">Ottieni un preventivo personalizzato</p>
-                            
-                            <div class="contact-features">
-                                <div class="contact-feature">
-                                    <i class="fas fa-bolt"></i>
-                                    <h4>Risposta Rapida</h4>
-                                    <p>Preventivo dettagliato entro 24 ore</p>
+                    <div class="contact-wrapper fade-in-up">
+                        <div class="contact-left">
+                            <div class="section-label light">Contatti</div>
+                            <h2>Pronto a iniziare?</h2>
+                            <p>Inviami i dettagli del tuo progetto: budget, numero di pagine e funzionalità desiderate. Ti risponderó appena possibile con un preventivo personalizzato.</p>
+                            <div class="contact-info-items">
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                                    <div>
+                                        <span>Email</span>
+                                        <a href="mailto:lilnullbusiness@gmail.com">lilnullbusiness@gmail.com</a>
+                                    </div>
                                 </div>
-                                <div class="contact-feature">
-                                    <i class="fas fa-shield-alt"></i>
-                                    <h4>Qualità Garantita</h4>
-                                    <p>Progetti professionali e moderni</p>
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon"><i class="fas fa-location-dot"></i></div>
+                                    <div>
+                                        <span>Posizione</span>
+                                        <strong>Bari, Italia</strong>
+                                    </div>
                                 </div>
-                                <div class="contact-feature">
-                                    <i class="fas fa-handshake"></i>
-                                    <h4>Supporto Completo</h4>
-                                    <p>Dalla A alla Z</p>
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+                                    <div>
+                                        <span>Risposta garantita entro</span>
+                                        <strong>24 ore</strong>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div style="margin-top: 2rem;">
-                                <p style="margin-bottom: 1.5rem; opacity: 0.9;">Inviami i dettagli del tuo progetto: budget, numero di pagine e funzionalità desiderate.</p>
-                                <a target="_blank" href="mailto:lilnullbusiness@gmail.com" class="cta-button">
-                                    <i class="fas fa-envelope"></i> Scrivimi Ora
+                        </div>
+                        <div class="contact-right">
+                            <div class="contact-card-inner">
+                                <h3>Iniziamo a collaborare</h3>
+                                <p>Ogni grande progetto inizia con una conversazione.</p>
+                                <a href="https://it.fiverr.com/s/R7pNDZD" class="btn-contact">
+                                    Contattami ora
                                 </a>
+                                <div class="contact-guarantees">
+                                    <div class="guarantee-item">
+                                        <i class="fas fa-check"></i> Preventivo gratuito
+                                    </div>
+                                    <div class="guarantee-item">
+                                        <i class="fas fa-check"></i> Nessun impegno
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </main> <footer>
-            <p>&copy; 2025 Frank - Tutti i diritti sono riservati</p>
-            <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">Sviluppatore | Studente | Digital Partner</p>
+
+        </main>
+
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="static/CSS/IMGS/logo.png" alt="Frank" />
+                    <span>FrankSitez</span>
+                </div>
+                <p>&copy; 2026 Francesco · Tutti i diritti riservati</p>
+                <p class="footer-sub">Sviluppatore · Designer · Digital Partner · Bari, IT</p>
+            </div>
         </footer>
     </div>
+
     <script src="static/JS/script.js"></script>
 </body>
 </html>
