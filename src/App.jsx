@@ -8,7 +8,8 @@ import {
   LightModeOutlined, DarkModeOutlined, ChevronLeftRounded, ChevronRightRounded, AddRounded, EmailOutlined,
   PlaceOutlined, CheckRounded
 } from '@mui/icons-material';
-import { navigation, services, projects, technologies, softSkills, questions } from './content.js';
+import { navigation, services, projects, softSkills, questions } from './content.js';
+import TechScroller from './components/TechScroller.jsx';
 
 const asset = (file) => import.meta.env.BASE_URL + 'static/CSS/IMGS/' + encodeURIComponent(file);
 
@@ -247,9 +248,7 @@ function Skills() {
           <div className="col-12 col-lg-7">
             <div className="skill-panel">
               <div className="skill-panel-heading"><h3>Stack Tecnico</h3></div>
-              <CardCarousel className="tech-grid" label="Tecnologie">
-                {technologies.map((tech) => <div className="tech-cell mobile-carousel-slide" key={tech}><strong>{tech}</strong></div>)}
-              </CardCarousel>
+              <TechScroller />
             </div>
           </div>
           <div className="col-12 col-lg-5">
