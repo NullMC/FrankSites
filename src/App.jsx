@@ -1,18 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   ThemeProvider, createTheme, CssBaseline, Button, IconButton, Drawer,
-  Box, Typography, Chip, Accordion, AccordionSummary, AccordionDetails
+  Typography, Chip, Accordion, AccordionSummary, AccordionDetails
 } from '@mui/material';
 import {
   ArrowForwardRounded, ArrowOutwardRounded, MenuRounded, CloseRounded,
-  LightModeOutlined, DarkModeOutlined, CodeRounded, PaletteOutlined,
-  MemoryOutlined, HandshakeOutlined, AddRounded, EmailOutlined,
+  LightModeOutlined, DarkModeOutlined, AddRounded, EmailOutlined,
   PlaceOutlined, CheckRounded
 } from '@mui/icons-material';
 import { navigation, services, projects, technologies, softSkills, questions } from './content.js';
 
 const asset = (file) => import.meta.env.BASE_URL + 'static/CSS/IMGS/' + encodeURIComponent(file);
-const serviceIcons = [CodeRounded, PaletteOutlined, MemoryOutlined, HandshakeOutlined];
 
 const frankProfile = JSON.stringify({
   name: 'Francesco',
@@ -23,11 +21,10 @@ const frankProfile = JSON.stringify({
   available: true
 }, null, 2);
 
-function SectionTitle({ label, title, intro, inverse = false }) {
+function SectionTitle({ title, intro, inverse = false, id }) {
   return (
     <div className={'section-heading' + (inverse ? ' section-heading-inverse' : '')}>
-      <span className="eyebrow">{label}</span>
-      <h2>{title}</h2>
+      <h2 id={id}>{title}</h2>
       {intro && <p className="section-intro">{intro}</p>}
     </div>
   );
@@ -35,21 +32,6 @@ function SectionTitle({ label, title, intro, inverse = false }) {
 
 function Header({ mode, setMode }) {
   const [open, setOpen] = useState(false);
-  const [scroll, setScroll] = useState(0);
-
-  useEffect(() => {
-    const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setScroll(max > 0 ? Math.min(100, window.scrollY / max * 100) : 0);
-    };
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    return () => {
-      window.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
-    };
-  }, []);
 
   useEffect(() => {
     const close = () => setOpen(false);
@@ -70,7 +52,7 @@ function Header({ mode, setMode }) {
         <div className="site-header-inner container flex items-center">
           <a className="brand" href="#hero" aria-label="FrankSitez, torna all'inizio">
             <img src={asset('logo.png')} alt="" width="38" height="38" />
-            <span>Frank<span className="brand-accent">Sitez</span><span className="brand-period">.</span></span>
+            <span>Frank<span className="brand-accent">Sitez</span></span>
           </a>
           <nav className="desktop-links" aria-label="Navigazione principale">
             {navigation.slice(0, -1).map((item) => <a key={item.id} href={'#' + item.id}>{item.text}</a>)}
@@ -85,18 +67,17 @@ function Header({ mode, setMode }) {
             </IconButton>
           </div>
         </div>
-        <div className="reading-progress" aria-hidden="true" style={{ width: scroll + '%' }} />
       </header>
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}
         PaperProps={{ className: 'navigation-drawer' }}>
         <div className="drawer-head">
-          <span className="drawer-brand">FrankSitez<span className="brand-period">.</span></span>
+          <span className="drawer-brand">FrankSitez</span>
           <IconButton aria-label="Chiudi menu" onClick={() => setOpen(false)}><CloseRounded /></IconButton>
         </div>
         <nav aria-label="Navigazione mobile" className="drawer-links">
-          {navigation.map((item, i) => (
+          {navigation.map((item) => (
             <a href={'#' + item.id} key={item.id} onClick={() => setOpen(false)}>
-              <span>{String(i + 1).padStart(2, '0')}</span>{item.text}<ArrowOutwardRounded fontSize="small" />
+              {item.text}
             </a>
           ))}
         </nav>
@@ -111,9 +92,8 @@ function Hero() {
     <section className="hero-section" id="hero" aria-labelledby="hero-title">
       <div className="container hero-layout">
         <div className="hero-copy">
-          <div className="availability"><span className="availability-dot" />Disponibile per nuovi progetti</div>
-          <p className="hero-overline">WEB DEVELOPMENT / DIGITAL PARTNERSHIP</p>
-          <h1 id="hero-title">Ciao, sono<br /><span>Francesco</span><span className="hero-mark">.</span></h1>
+          <p className="hero-availability">Disponibile per nuovi progetti</p>
+          <h1 id="hero-title">Ciao, sono<br /><span>Francesco</span></h1>
           <p className="hero-position">Sviluppatore Web &amp; Digital Partner</p>
           <p className="hero-description">Dalle idee alla realta,<br />Il tuo partner digitale a 360°.</p>
           <div className="hero-actions flex flex-wrap">
@@ -121,19 +101,6 @@ function Hero() {
             <Button component="a" href="#portfolio" className="text-action" endIcon={<ArrowForwardRounded />}>Vedi i progetti</Button>
           </div>
         </div>
-        <div className="hero-art" aria-label="Ritratto di Francesco">
-          <div className="portrait-board">
-            <div className="portrait-picture">
-              <img src={asset('profile-pic.webp')} alt="Francesco, sviluppatore Web e Digital Partner" fetchPriority="high" />
-            </div>
-            <div className="portrait-caption">
-              <span>01 / FRANKSITEZ</span>
-              <span>BARI, ITALIA</span>
-            </div>
-          </div>
-          <div className="hero-side-label" aria-hidden="true">DESIGN · CODE · STRATEGY</div>
-        </div>
-        <a href="#about" className="scroll-link">Scopri di più <span>↓</span></a>
       </div>
     </section>
   );
@@ -143,7 +110,7 @@ function About() {
   return (
     <section id="about" className="section section-about" aria-labelledby="about-title">
       <div className="container">
-        <SectionTitle label="01 / Chi sono" title={<>Studente, sviluppatore,<br /><em>digital partner</em></>} />
+        <SectionTitle id="about-title" title={<>Studente, sviluppatore,<br /><em>digital partner</em></>} />
         <div className="row gy-5 align-items-center">
           <div className="col-lg-6">
             <div className="about-copy">
@@ -153,9 +120,7 @@ function About() {
           </div>
           <div className="col-lg-6">
             <div className="code-window">
-              <div className="code-window-header"><span className="code-file"><span className="file-dot" />frank.json</span><span>JSON</span></div>
-              <pre><code>{frankProfile}</code></pre>
-              <div className="code-window-footer"><span className="online-dot" /> Open to collaborations</div>
+              <pre aria-label="Profilo professionale"><code>{frankProfile}</code></pre>
             </div>
           </div>
         </div>
@@ -168,37 +133,32 @@ function Services() {
   return (
     <section className="section services-section" id="services" aria-label="Servizi">
       <div className="container">
-        <SectionTitle label="02 / Servizi" title={<>Cosa posso fare<br />per te</>} intro="Soluzioni smart su misura, dall'idea al deploy." />
+        <SectionTitle title={<>Cosa posso fare<br />per te</>} intro="Soluzioni smart su misura, dall'idea al deploy." />
         <div className="row g-4">
-          {services.map((service, i) => {
-            const Icon = serviceIcons[i];
-            return (
+          {services.map((service) => (
               <div className="col-12 col-md-6" key={service.title}>
                 <article className="service-card">
-                  <div className="service-top"><span className="service-index">0{i + 1}</span><span className="service-icon"><Icon fontSize="medium" /></span></div>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                   <div className="tag-row flex flex-wrap">{service.tags.map((tag) => <Chip key={tag} label={tag} size="small" className="minimal-chip" />)}</div>
                 </article>
               </div>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project }) {
   return (
     <article className="project-card">
       <div className="project-visual">
         <img loading="lazy" src={asset(project.image)} alt={'Logo del progetto ' + project.title} />
-        <span className="project-visual-index">{String(index + 1).padStart(2, '0')}</span>
         <a className="project-visual-link" href={project.url} target="_blank" rel="noopener noreferrer"
           aria-label={'Visita il sito di ' + project.title}><ArrowOutwardRounded /></a>
       </div>
-      <div className="project-meta"><span>{project.year}</span><span className="project-meta-rule" /><span>PROGETTO / {String(index + 1).padStart(2, '0')}</span></div>
+      <div className="project-meta">{project.year}</div>
       <h3><a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}<ArrowOutwardRounded fontSize="small" /></a></h3>
       <p>{project.descriptionBefore}{project.partner && <a href={project.partner.url} target="_blank" rel="noopener noreferrer" className="inline-link">{project.partner.title}</a>}{project.descriptionAfter}{project.description}</p>
       <div className="tag-row">{project.tags.map((tag) => <Chip key={tag} size="small" className="project-tag" label={tag} />)}</div>
@@ -210,9 +170,9 @@ function Portfolio() {
   return (
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
-        <SectionTitle label="03 / Portfolio" title="Portfolio progetti" />
+        <SectionTitle title="Portfolio progetti" />
         <div className="row gx-4 gy-5">
-          {projects.map((project, index) => <div className="col-12 col-md-6" key={project.title}><ProjectCard project={project} index={index} /></div>)}
+          {projects.map((project) => <div className="col-12 col-md-6" key={project.title}><ProjectCard project={project} /></div>)}
         </div>
       </div>
     </section>
@@ -223,21 +183,21 @@ function Skills() {
   return (
     <section className="section skills-section" id="skills" aria-label="Competenze">
       <div className="container">
-        <SectionTitle label="04 / Competenze" title={<>Tecnologie &amp;<br />strumenti</>} intro="Le tecnologie con cui costruisco soluzioni." />
+        <SectionTitle title={<>Tecnologie &amp;<br />strumenti</>} intro="Le tecnologie con cui costruisco soluzioni." />
         <div className="row g-4">
           <div className="col-12 col-lg-7">
             <div className="skill-panel">
-              <div className="skill-panel-heading"><h3>Stack Tecnico</h3><span>01 — 11</span></div>
+              <div className="skill-panel-heading"><h3>Stack Tecnico</h3></div>
               <div className="tech-grid">
-                {technologies.map((tech, i) => <div className="tech-cell" key={tech}><span>{String(i + 1).padStart(2, '0')}</span><strong>{tech}</strong></div>)}
+                {technologies.map((tech) => <div className="tech-cell" key={tech}><strong>{tech}</strong></div>)}
               </div>
             </div>
           </div>
           <div className="col-12 col-lg-5">
             <div className="skill-panel soft-panel">
-              <div className="skill-panel-heading"><h3>Soft Skills</h3><span>02 — 04</span></div>
+              <div className="skill-panel-heading"><h3>Soft Skills</h3></div>
               <div className="soft-list">
-                {softSkills.map((skill, i) => <div key={skill.title} className="soft-item"><span>{String(i + 1).padStart(2, '0')}</span><div><h4>{skill.title}</h4><p>{skill.description}</p></div></div>)}
+                {softSkills.map((skill) => <div key={skill.title} className="soft-item"><div><h4>{skill.title}</h4><p>{skill.description}</p></div></div>)}
               </div>
             </div>
           </div>
@@ -254,14 +214,13 @@ function Faq() {
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 col-lg-5">
-            <SectionTitle label="05 / FAQ" title="Domande frequenti" intro="Tutto quello che devi sapere prima di iniziare a collaborare." />
+            <SectionTitle title="Domande frequenti" intro="Tutto quello che devi sapere prima di iniziare a collaborare." />
           </div>
           <div className="col-12 col-lg-7">
             <div className="faq-accordion">
               {questions.map((entry, index) => (
                 <Accordion key={entry.question} expanded={expanded === index} onChange={(_, isExpanded) => setExpanded(isExpanded ? index : false)} disableGutters elevation={0} square>
                   <AccordionSummary expandIcon={<AddRounded className="faq-plus" />} aria-controls={'faq-answer-' + index} id={'faq-question-' + index}>
-                    <span className="faq-number">{String(index + 1).padStart(2, '0')}</span>
                     <Typography component="h3" className="faq-question-text">{entry.question}</Typography>
                   </AccordionSummary>
                   <AccordionDetails id={'faq-answer-' + index}><Typography>{entry.answer}</Typography></AccordionDetails>
@@ -282,7 +241,7 @@ function Contact() {
         <div className="contact-shell">
           <div className="row gy-5 align-items-center">
             <div className="col-12 col-lg-7">
-              <SectionTitle label="06 / Contatti" title={<>Pronto a<br />iniziare?</>} inverse />
+              <SectionTitle title={<>Pronto a<br />iniziare?</>} inverse />
               <p className="contact-description">Inviami i dettagli del tuo progetto: budget, numero di pagine e funzionalità desiderate. Ti risponderó appena possibile con un preventivo personalizzato.</p>
               <div className="contact-info">
                 <div className="contact-info-row"><EmailOutlined /><div><span>Email</span><a href="mailto:lilnullbusiness@gmail.com">lilnullbusiness@gmail.com</a></div></div>
@@ -291,7 +250,6 @@ function Contact() {
             </div>
             <div className="col-12 col-lg-5">
               <div className="contact-card">
-                <div className="contact-card-top"><span>PARLIAMONE</span><ArrowOutwardRounded /></div>
                 <h3>Iniziamo a collaborare</h3>
                 <p>Ogni grande progetto inizia con una conversazione.</p>
                 <Button className="contact-button" component="a" href="https://it.fiverr.com/s/R7pNDZD" target="_blank"
@@ -311,7 +269,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-main flex items-center justify-between">
-          <a className="brand" href="#hero" aria-label="Torna all'inizio"><img src={asset('logo.png')} alt="" width="35" height="35" /><span>Frank<span className="brand-accent">Sitez</span><span className="brand-period">.</span></span></a>
+          <a className="brand" href="#hero" aria-label="Torna all'inizio"><img src={asset('logo.png')} alt="" width="35" height="35" /><span>Frank<span className="brand-accent">Sitez</span></span></a>
           <a href="#hero" className="back-to-top">Torna su ↑</a>
         </div>
         <div className="footer-bottom">
