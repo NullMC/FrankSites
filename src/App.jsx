@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ThemeProvider, createTheme, CssBaseline, Button, IconButton, Drawer,
   Typography, Chip, Accordion, AccordionSummary, AccordionDetails
 } from '@mui/material';
 import {
   ArrowForwardRounded, ArrowOutwardRounded, MenuRounded, CloseRounded,
-  LightModeOutlined, DarkModeOutlined, AddRounded, EmailOutlined,
+  LightModeOutlined, DarkModeOutlined, ChevronLeftRounded, ChevronRightRounded, AddRounded, EmailOutlined,
   PlaceOutlined, CheckRounded
 } from '@mui/icons-material';
 import { navigation, services, projects, technologies, softSkills, questions } from './content.js';
@@ -26,6 +26,65 @@ function SectionTitle({ title, intro, inverse = false, id }) {
     <div className={'section-heading' + (inverse ? ' section-heading-inverse' : '')}>
       <h2 id={id}>{title}</h2>
       {intro && <p className="section-intro">{intro}</p>}
+    </div>
+  );
+}
+
+
+/**
+ * Grid on desktop, swipeable native scroll-snap carousel on mobile.
+ * Buttons are only shown on mobile; touch and keyboard scrolling work without JS.
+ */
+function CardCarousel({ className = '', label, children }) {
+  const trackRef = useRef(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return undefined;
+
+    const updateEdges = () => {
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      setEdges({
+        start: track.scrollLeft <= 3,
+        end: track.scrollLeft >= maxScroll - 3
+      });
+    };
+
+    updateEdges();
+    track.addEventListener('scroll', updateEdges, { passive: true });
+    window.addEventListener('resize', updateEdges);
+    return () => {
+      track.removeEventListener('scroll', updateEdges);
+      window.removeEventListener('resize', updateEdges);
+    };
+  }, []);
+
+  const move = (direction) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector('.mobile-carousel-slide');
+    if (!card) return;
+    const gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
+    const distance = card.getBoundingClientRect().width + gap;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollBy({ left: direction * distance, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+
+  return (
+    <div className="carousel-shell">
+      <div className={className + ' mobile-carousel-track'} ref={trackRef} role="region"
+        aria-roledescription="carousel" aria-label={label} tabIndex={0}>
+        {children}
+      </div>
+      <div className="mobile-carousel-controls" aria-label={'Controlli ' + label}>
+        <IconButton onClick={() => move(-1)} disabled={edges.start} size="small" aria-label={'Card precedente, ' + label}>
+          <ChevronLeftRounded />
+        </IconButton>
+        <IconButton onClick={() => move(1)} disabled={edges.end} size="small" aria-label={'Card successiva, ' + label}>
+          <ChevronRightRounded />
+        </IconButton>
+      </div>
     </div>
   );
 }
@@ -134,9 +193,9 @@ function Services() {
     <section className="section services-section" id="services" aria-label="Servizi">
       <div className="container">
         <SectionTitle title={<>Cosa posso fare<br />per te</>} intro="Soluzioni smart su misura, dall'idea al deploy." />
-        <div className="row g-4">
+        <CardCarousel className="row g-4" label="Servizi">
           {services.map((service) => (
-              <div className="col-12 col-md-6" key={service.title}>
+              <div className="col-12 col-md-6 mobile-carousel-slide" key={service.title}>
                 <article className="service-card">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
@@ -144,7 +203,7 @@ function Services() {
                 </article>
               </div>
           ))}
-        </div>
+        </CardCarousel>
       </div>
     </section>
   );
@@ -171,9 +230,9 @@ function Portfolio() {
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
         <SectionTitle title="Portfolio progetti" />
-        <div className="row gx-4 gy-5">
-          {projects.map((project) => <div className="col-12 col-md-6" key={project.title}><ProjectCard project={project} /></div>)}
-        </div>
+        <CardCarousel className="row gx-4 gy-5" label="Progetti">
+          {projects.map((project) => <div className="col-12 col-md-6 mobile-carousel-slide" key={project.title}><ProjectCard project={project} /></div>)}
+        </CardCarousel>
       </div>
     </section>
   );
@@ -188,9 +247,9 @@ function Skills() {
           <div className="col-12 col-lg-7">
             <div className="skill-panel">
               <div className="skill-panel-heading"><h3>Stack Tecnico</h3></div>
-              <div className="tech-grid">
-                {technologies.map((tech) => <div className="tech-cell" key={tech}><strong>{tech}</strong></div>)}
-              </div>
+              <CardCarousel className="tech-grid" label="Tecnologie">
+                {technologies.map((tech) => <div className="tech-cell mobile-carousel-slide" key={tech}><strong>{tech}</strong></div>)}
+              </CardCarousel>
             </div>
           </div>
           <div className="col-12 col-lg-5">

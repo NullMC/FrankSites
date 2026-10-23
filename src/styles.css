@@ -215,11 +215,83 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero-copy h1 { font-size: 53px; }
   .hero-actions { align-items: stretch; }
   .MuiButton-root.primary-action, .MuiButton-root.text-action { min-height: 48px; }
-  .tech-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .faq-accordion .MuiAccordionDetails-root { padding-right: 14px; }
   .footer-main { min-height: 95px; }
   .footer-bottom { flex-direction: column; }
 }
+
+/* Native swipeable card rails on phones; desktop keeps the original grids. */
+.mobile-carousel-controls { display: none; }
+
+@media (max-width: 767px) {
+  .carousel-shell { min-width: 0; }
+
+  .mobile-carousel-track {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 16px;
+    margin: 0;
+    padding: 0 0 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    scrollbar-width: none;
+  }
+
+  .mobile-carousel-track::-webkit-scrollbar { display: none; }
+
+  .mobile-carousel-track > .mobile-carousel-slide {
+    flex: 0 0 min(86%, 370px);
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    padding: 0;
+    margin-top: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .mobile-carousel-track .service-card,
+  .mobile-carousel-track .project-card { height: 100%; }
+
+  /* Technologies are deliberately smaller cards within their existing panel. */
+  .tech-grid.mobile-carousel-track { display: flex; gap: 10px; }
+  .tech-grid.mobile-carousel-track > .mobile-carousel-slide {
+    flex: 0 0 clamp(140px, 43vw, 190px);
+    min-height: 86px;
+    padding: 16px;
+  }
+
+  .mobile-carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .mobile-carousel-controls .MuiIconButton-root {
+    width: 38px;
+    height: 38px;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface);
+  }
+
+  .mobile-carousel-controls .MuiIconButton-root:hover {
+    background: var(--surface-alt);
+  }
+
+  .mobile-carousel-controls .MuiIconButton-root.Mui-disabled {
+    opacity: .35;
+    color: var(--ink-muted);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
