@@ -22,7 +22,8 @@ La build statica è generata in `dist/`. Per Cloudflare Pages usa il comando di 
 
 - `src/App.jsx`: sezioni e componenti React, navigazione mobile, tema, FAQ.
 - `src/content.js`: contenuti, link e progetti modificabili.
-- `src/styles.css`: design system responsive e layout personalizzati.
+- `src/styles.css`: design system responsive, carousel touch e filigrana animata a tutta larghezza.
+- `src/components/TechScroller.jsx`: tecnologie in scorrimento continuo sotto le Soft Skills, con pausa al passaggio del mouse e rispetto del movimento ridotto.
 - `public/static/CSS/IMGS/`: asset originali del portfolio.
 
 L'ordine rimane Home, Chi sono, Servizi, Portfolio, Competenze, FAQ e Contatti. Nessuna schermata di loading o dipendenza da Three.js.

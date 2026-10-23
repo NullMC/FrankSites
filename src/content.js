@@ -11,22 +11,22 @@ export const navigation = [
 export const services = [
   {
     title: 'Sviluppo Web',
-    description: 'Siti web moderni, responsive e ottimizzati per portare la tua attività online. Design, sviluppo e deployment: tutto in un unico pacchetto.',
+    description: 'Progetto e realizzo siti e applicazioni web responsive, dall'interfaccia al rilascio online. Un percorso completo, costruito intorno agli obiettivi del progetto.',
     tags: ['HTML/CSS', 'JavaScript', 'React', 'Tailwind', 'PHP', 'MySQL']
   },
   {
     title: 'Design & Grafica',
-    description: "Loghi, identità visiva e grafiche di ogni tipo. Un'immagine coordinata che comunica il valore del tuo brand.",
+    description: "Identità visive, loghi e interfacce pensati per rendere un brand riconoscibile e coerente su ogni canale.",
     tags: ['Branding', 'UI/UX', 'Logo']
   },
   {
     title: 'IoT & Smart Accessori',
-    description: 'Soluzioni NFC e IoT per connettere il mondo fisico al digitale. Biglietti da visita smart, menu interattivi, esperienze uniche per i tuoi clienti.',
+    description: 'NFC e IoT per collegare esperienze fisiche e digitali: biglietti da visita smart, menù interattivi e strumenti utili alle attività.',
     tags: ['NFC', 'IoT', 'Smart Objects']
   },
   {
     title: 'Digital Partnership',
-    description: "Consulenza e strategia digitale continua. Non solo un servizio, ma un partner che cresce con te e tiene d'occhio la tua presenza online.",
+    description: "Dalla definizione delle priorità agli aggiornamenti dopo il lancio. Un confronto diretto per far evolvere il progetto nel tempo.",
     tags: ['Consulenza', 'SEO', 'Strategia']
   }
 ];
@@ -38,7 +38,7 @@ export const projects = [
     tags: ['Logo', 'Design', 'Dev'],
     image: 'angoletto.webp',
     url: 'https://menuangolettobitritto.com/',
-    description: 'Menù digitale elegante e funzionale per una pizzeria locale. Progetto completo di identità visiva e sviluppo.'
+    description: 'Identità visiva e menù digitale progettati per rendere semplice e immediata la consultazione.'
   },
   {
     title: "Pizzeria L'Oliva",
@@ -46,7 +46,7 @@ export const projects = [
     tags: ['Design', 'Dev'],
     image: 'logol-oliva.png',
     url: 'https://pizzeria-l-oliva.pages.dev/',
-    description: 'Menù digitale, cinematico, moderno e tech-advanced.'
+    description: 'Un menù digitale con un'interfaccia moderna e una forte attenzione alla presentazione visiva.'
   },
   {
     title: 'Civis',
@@ -54,9 +54,9 @@ export const projects = [
     tags: ['Prompt Structuring', 'Design', 'Dev', '"I made it at PugliaHack 2026"'],
     image: 'civis-logo.png',
     url: 'https://communitycivis.it/',
-    descriptionBefore: 'Progetto di Vibe Coding in collaborazione con ',
+    descriptionBefore: 'Progetto realizzato durante PugliaHack 2026 con il supporto di ',
     partner: { title: 'Lovable.dev', url: 'https://lovable.dev' },
-    descriptionAfter: " - Civis collega chi vive il territorio a chi lo amministra. Segnala una problematica, lascia che la nostra AI valuti l'urgenza, e segui in tempo reale il lavoro del tuo comune."
+    descriptionAfter: ". Civis collega cittadini e amministrazioni attraverso segnalazioni territoriali, valutazione dell'urgenza tramite AI e aggiornamenti sul loro stato."
   },
   {
     title: 'StreetLeague',
@@ -64,7 +64,7 @@ export const projects = [
     tags: ['Full-Stack Design & Development'],
     image: 'StreetLeague.webp',
     url: 'https://streetleaguebari.it/',
-    description: 'Piattaforma dedicata alla community della Street League, dove seguire le competizioni, aggiornarsi sulle ultime novità, squadre, partite, classifiche e statistiche aggiornate.'
+    description: 'Piattaforma per la community Street League: competizioni, squadre, risultati, classifiche e statistiche in un unico spazio.'
   },
   {
     title: 'Agenzia Casadibari',
@@ -72,38 +72,38 @@ export const projects = [
     tags: ['Full-Stack Development'],
     image: 'Logo Agenzia Casadibari.webp',
     url: 'https://casadibari.com',
-    description: "Piattaforma web per l'agenzia immobiliare Casadibari, con funzionalità di visualizzazione annunci, contatti e informazioni sulla società."
+    description: "Sito web per l'agenzia immobiliare Casadibari, con annunci consultabili, informazioni e canali di contatto."
   }
 ];
 
 export const technologies = ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'React', 'Tailwind CSS', 'Python', 'Java', 'PHP', 'MySQL', 'IoT & NFC'];
 
 export const softSkills = [
-  { title: 'Problem Solving', description: 'Approccio analitico ai problemi complessi' },
-  { title: 'Comunicazione', description: 'Dialogo diretto e continuo con il cliente' },
-  { title: 'Teamwork & Leadership', description: 'Esperienza in team multidisciplinari' },
-  { title: 'Gestione del tempo', description: 'Rispetto delle scadenze, sempre' }
+  { title: 'Problem Solving', description: 'Analizzo i vincoli e cerco soluzioni concrete' },
+  { title: 'Comunicazione', description: 'Ascolto, confronto e aggiornamenti chiari' },
+  { title: 'Teamwork & Leadership', description: 'Collaborazione in team e progetti condivisi' },
+  { title: 'Gestione del tempo', description: 'Pianificazione delle attività e attenzione alle priorità' }
 ];
 
 export const questions = [
   {
     question: 'Quali sono i tempi di consegna?',
-    answer: 'Dipende dalla complessità del progetto. Per la conversione da design a codice i tempi sono molto rapidi. Per progetti completi (design + sviluppo) definiamo insieme un piano di lavoro dettagliato. Sono disponibili anche servizi express con costi aggiuntivi.'
+    answer: 'Le tempistiche dipendono da obiettivi, funzionalità e materiali disponibili. Prima di iniziare definiamo fasi, priorità e una data di consegna realistica; per urgenze specifiche possiamo valutare una soluzione dedicata.'
   },
   {
     question: 'Come viene pubblicato il sito web?',
-    answer: 'Gestisco tutto il processo di pubblicazione. Utilizzo piattaforme moderne come Cloudflare per hosting e domini, garantendo sicurezza, velocità e un deployment automatizzato. Non dovrai preoccuparti di nulla.'
+    answer: 'Seguo anche la pubblicazione e la configurazione dell'hosting. Scelgo con te la soluzione più adatta al progetto, inclusi dominio, deployment e gestione tecnica iniziale.'
   },
   {
     question: 'Come funzionano i prezzi?',
-    answer: 'Il costo dipende dalla struttura del sito: numero di pagine, complessità dei contenuti e funzionalità richieste. Contattami con i dettagli del tuo progetto e riceverai un preventivo personalizzato e trasparente entro 24 ore.'
+    answer: 'Il preventivo viene definito in base ad ampiezza del sito, complessità tecnica e funzionalità. Scrivimi con i dettagli: preparerò una proposta chiara sulle attività previste.'
   },
   {
     question: 'Qual è il processo di lavoro?',
-    answer: "Inizio sempre dalla definizione degli obiettivi e dall'approvazione del progetto grafico. Una volta approvato il design, procedo a svilupparlo con focus su performance e responsiveness pero ogni dispositivo."
+    answer: "Partiamo dagli obiettivi, definiamo struttura e design, poi passiamo allo sviluppo e alle verifiche su dispositivi diversi. Condividiamo le scelte principali lungo il percorso."
   },
   {
     question: 'Offri supporto dopo il deploy?',
-    answer: 'Assolutamente sì. Come Digital Partner, sono disponibile per aggiornamenti, modifiche e supporto continuo dopo il deploy del progetto. La partnership non finisce con la consegna.'
+    answer: 'Sì. Dopo la pubblicazione possiamo concordare aggiornamenti, evoluzioni e supporto continuativo in base alle necessità del progetto.'
   }
 ];

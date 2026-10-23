@@ -13,15 +13,6 @@ import TechScroller from './components/TechScroller.jsx';
 
 const asset = (file) => import.meta.env.BASE_URL + 'static/CSS/IMGS/' + encodeURIComponent(file);
 
-const frankProfile = JSON.stringify({
-  name: 'Francesco',
-  alias: 'Frank',
-  location: 'Bari, Italy',
-  role: ['Web Developer', 'Graphic Designer', 'Digital Partner'],
-  specialization: ['Informatica', 'Telecomunicazioni', 'IoT & NFC'],
-  available: true
-}, null, 2);
-
 function SectionTitle({ title, intro, inverse = false, id }) {
   return (
     <div className={'section-heading' + (inverse ? ' section-heading-inverse' : '')}>
@@ -152,12 +143,11 @@ function Hero() {
     <section className="hero-section" id="hero" aria-labelledby="hero-title">
       <div className="container hero-layout">
         <div className="hero-copy">
-          <p className="hero-availability">Disponibile per nuovi progetti</p>
-          <h1 id="hero-title">Ciao, sono<br /><span>Francesco</span></h1>
-          <p className="hero-position">Sviluppatore Web &amp; Digital Partner</p>
-          <p className="hero-description">Dalle idee alla realta,<br />Il tuo partner digitale a 360°.</p>
+          <h1 id="hero-title">Le idee diventano<br /><span>esperienze digitali.</span></h1>
+          <p className="hero-position">Sono Francesco, Web Developer &amp; Digital Partner.</p>
+          <p className="hero-description">Dalla prima intuizione al progetto online. Creo soluzioni su misura, con attenzione a design, tecnologia e persone.</p>
           <div className="hero-actions flex flex-wrap">
-            <Button component="a" href="#contact" className="primary-action" endIcon={<ArrowOutwardRounded />}>Iniziamo</Button>
+            <Button component="a" href="#contact" className="primary-action" endIcon={<ArrowOutwardRounded />}>Parliamo del tuo progetto</Button>
             <Button component="a" href="#portfolio" className="text-action" endIcon={<ArrowForwardRounded />}>Vedi i progetti</Button>
           </div>
         </div>
@@ -170,18 +160,20 @@ function About() {
   return (
     <section id="about" className="section section-about" aria-labelledby="about-title">
       <div className="container">
-        <SectionTitle id="about-title" title={<>Studente, sviluppatore,<br /><em>digital partner</em></>} />
+        <SectionTitle id="about-title" title={<>Un approccio personale.<br /><em>Una visione digitale.</em></>} />
         <div className="row gy-5 align-items-center">
           <div className="col-lg-6">
             <div className="about-copy">
-              <p>Sono Francesco — Frank per gli amici. Dai vita alle tue idee! Con esperienza su progetti reali, progetto e sviluppo soluzioni digitali e innovative!</p>
-              <p>Non mi limito a scrivere codice: collaboro con te per capire i tuoi obiettivi, definire una strategia e costruire la soluzione digitale e smart perfetta per te e la tua attività.</p>
+              <p>Sono Francesco, sviluppatore web e digital partner a Bari. Unisco progettazione, sviluppo e curiosità tecnologica per dare forma a idee concrete.</p>
+              <p>Ogni progetto parte dall'ascolto: capisco gli obiettivi, definisco una direzione chiara e realizzo esperienze digitali pensate per chi le utilizzerà.</p>
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="code-window">
-              <pre aria-label="Profilo professionale"><code>{frankProfile}</code></pre>
-            </div>
+            <aside className="about-aside">
+              <h3>Dal concept al rilascio.</h3>
+              <p>Un processo essenziale, dalla definizione dell'interfaccia allo sviluppo e alla pubblicazione. Con un confronto diretto in ogni fase.</p>
+              <a href="#portfolio" className="editorial-link">Esplora i progetti <ArrowOutwardRounded fontSize="small" /></a>
+            </aside>
           </div>
         </div>
       </div>
@@ -193,7 +185,7 @@ function Services() {
   return (
     <section className="section services-section" id="services" aria-label="Servizi">
       <div className="container">
-        <SectionTitle title={<>Cosa posso fare<br />per te</>} intro="Soluzioni smart su misura, dall'idea al deploy." />
+        <SectionTitle title={<>Competenze diverse.<br />Un unico obiettivo.</>} intro="Dare forma a prodotti e strumenti digitali utili, semplici da usare e coerenti con chi li sceglie." />
         <CardCarousel className="row g-4" label="Servizi">
           {services.map((service) => (
               <div className="col-12 col-md-6 mobile-carousel-slide" key={service.title}>
@@ -230,7 +222,7 @@ function Portfolio() {
   return (
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
-        <SectionTitle title="Portfolio progetti" />
+        <SectionTitle title="Progetti selezionati" intro="Esperienze digitali realizzate per attività, organizzazioni e community." />
         <CardCarousel className="row gx-4 gy-5" label="Progetti">
           {projects.map((project) => <div className="col-12 col-md-6 mobile-carousel-slide" key={project.title}><ProjectCard project={project} /></div>)}
         </CardCarousel>
@@ -243,23 +235,27 @@ function Skills() {
   return (
     <section className="section skills-section" id="skills" aria-label="Competenze">
       <div className="container">
-        <SectionTitle title={<>Tecnologie &amp;<br />strumenti</>} intro="Le tecnologie con cui costruisco soluzioni." />
-        <div className="row g-4">
-          <div className="col-12 col-lg-7">
-            <div className="skill-panel">
-              <div className="skill-panel-heading"><h3>Stack Tecnico</h3></div>
-              <TechScroller />
-            </div>
+        <div className="skills-layout">
+          <div className="skills-lead">
+            <SectionTitle title={<>La tecnologia è un mezzo.<br /><em>Le persone sono il punto.</em></>}
+              intro="Progetto con attenzione alla semplicità d'uso, alla qualità del risultato e al dialogo con chi mi affida un'idea." />
+            <p className="skills-description">Dal design alle soluzioni web, scelgo strumenti e metodi in funzione del progetto, non il contrario.</p>
           </div>
-          <div className="col-12 col-lg-5">
-            <div className="skill-panel soft-panel">
-              <div className="skill-panel-heading"><h3>Soft Skills</h3></div>
-              <div className="soft-list">
-                {softSkills.map((skill) => <div key={skill.title} className="soft-item"><div><h4>{skill.title}</h4><p>{skill.description}</p></div></div>)}
-              </div>
+          <div className="skills-soft">
+            <h3>Soft Skills</h3>
+            <div className="soft-list">
+              {softSkills.map((skill) => (
+                <div key={skill.title} className="soft-item">
+                  <h4>{skill.title}</h4>
+                  <p>{skill.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </div>
+      <div className="skills-watermark-breakout">
+        <TechScroller />
       </div>
     </section>
   );
@@ -272,7 +268,7 @@ function Faq() {
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 col-lg-5">
-            <SectionTitle title="Domande frequenti" intro="Tutto quello che devi sapere prima di iniziare a collaborare." />
+            <SectionTitle title="Domande frequenti" intro="Le risposte alle domande più comuni prima di iniziare." />
           </div>
           <div className="col-12 col-lg-7">
             <div className="faq-accordion">
@@ -297,21 +293,19 @@ function Contact() {
     <section className="section contact-section" id="contact" aria-label="Contatti">
       <div className="container">
         <div className="contact-shell">
-          <div className="row gy-5 align-items-center">
+          <div className="row gy-5 align-items-end">
             <div className="col-12 col-lg-7">
-              <SectionTitle title={<>Pronto a<br />iniziare?</>} inverse />
-              <p className="contact-description">Inviami i dettagli del tuo progetto: budget, numero di pagine e funzionalità desiderate. Ti risponderó appena possibile con un preventivo personalizzato.</p>
+              <SectionTitle title={<>Un buon progetto<br />inizia parlando.</>} inverse />
+              <p className="contact-description">Raccontami cosa vuoi realizzare: obiettivi, funzionalità e tempi. Valuteremo insieme da dove partire.</p>
               <div className="contact-info">
-                <div className="contact-info-row"><EmailOutlined /><div><span>Email</span><a href="mailto:lilnullbusiness@gmail.com">lilnullbusiness@gmail.com</a></div></div>
-                <div className="contact-info-row"><PlaceOutlined /><div><span>Posizione</span><strong>Bari, Italia</strong></div></div>
+                <a href="mailto:lilnullbusiness@gmail.com"><EmailOutlined fontSize="small" /> lilnullbusiness@gmail.com</a>
+                <span><PlaceOutlined fontSize="small" /> Bari, Italia</span>
               </div>
             </div>
             <div className="col-12 col-lg-5">
-              <div className="contact-card">
-                <h3>Iniziamo a collaborare</h3>
-                <p>Ogni grande progetto inizia con una conversazione.</p>
+              <div className="contact-actions">
                 <Button className="contact-button" component="a" href="https://it.fiverr.com/s/R7pNDZD" target="_blank"
-                  rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Contattami ora</Button>
+                  rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Parliamo del progetto</Button>
                 <div className="contact-benefits"><span><CheckRounded fontSize="small" /> Preventivo gratuito</span><span><CheckRounded fontSize="small" /> Nessun impegno</span></div>
               </div>
             </div>
