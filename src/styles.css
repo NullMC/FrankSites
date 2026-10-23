@@ -135,15 +135,90 @@ img { display: block; max-width: 100%; }
 .soft-item p { color: var(--ink-muted); margin: 0; font-size: 13px; line-height: 1.65; }
 .skills-watermark-breakout { width: 100%; margin: clamp(57px, 8vw, 110px) 0 0; }
 
-/* No tiles, borders or backgrounds: the whole row reads as a subtle watermark. */
-.tech-marquee { display: block; position: relative; width: 100%; max-width: none; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
-.tech-marquee-track { display: flex; width: max-content; animation: tech-marquee-scroll 50s linear infinite; will-change: transform; }
-.tech-marquee-group { flex: none; display: flex; align-items: center; gap: 46px; padding: 0 46px 0 0; margin: 0; list-style: none; }
-.tech-marquee-item { display: flex; flex: 0 0 166px; min-height: 133px; align-items: center; justify-content: center; flex-direction: column; gap: 15px; padding: 0; color: var(--ink-muted); opacity: .19; font: 740 15px/1.35 var(--font-display); text-align: center; white-space: nowrap; }
-.tech-marquee-icon { width: 64px; height: 64px; color: currentColor; flex: none; }
-@keyframes tech-marquee-scroll { to { transform: translate3d(-50%, 0, 0); } }
+/* Full-viewport watermark scroller. Explicit columns prevent icon overlap. */
+.tech-marquee {
+  --tech-slot: 154px;
+  --tech-gap: 48px;
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.tech-marquee-track {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  width: max-content;
+  min-width: max-content;
+  gap: 0;
+  animation: tech-marquee-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee-group {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--tech-slot);
+  align-items: center;
+  column-gap: var(--tech-gap);
+  flex: 0 0 auto;
+  width: max-content;
+  min-width: max-content;
+  box-sizing: border-box;
+  padding: 0 var(--tech-gap) 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tech-marquee-item {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  inline-size: var(--tech-slot);
+  min-inline-size: var(--tech-slot);
+  max-inline-size: var(--tech-slot);
+  min-height: 133px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--ink-muted);
+  opacity: .19;
+  font: 740 14px/1.4 var(--font-display);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tech-marquee-item span {
+  display: block;
+  max-width: 100%;
+}
+
+.tech-marquee-icon {
+  display: block;
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  max-width: 58px;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+
+/* Two identical, equally wide groups: half a track = exactly one loop. */
+@keyframes tech-marquee-scroll {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
 .tech-marquee:hover .tech-marquee-track,
-.tech-marquee:focus-within .tech-marquee-track { animation-play-state: paused; }
+.tech-marquee:focus-within .tech-marquee-track {
+  animation-play-state: paused;
+}
 
 /* FAQ */
 .faq-section { background: var(--page); }
@@ -212,10 +287,10 @@ img { display: block; max-width: 100%; }
   .skills-layout { grid-template-columns: 1fr; gap: 44px; }
   .skills-lead .section-heading h2 { font-size: clamp(33px, 7.5vw, 49px); }
   .skills-watermark-breakout { margin-top: 58px; }
+  .tech-marquee { --tech-slot: 116px; --tech-gap: 26px; }
   .tech-marquee-track { animation-duration: 38s; }
-  .tech-marquee-group { gap: 28px; padding-right: 28px; }
-  .tech-marquee-item { flex-basis: 127px; min-height: 112px; font-size: 12px; opacity: .22; }
-  .tech-marquee-icon { width: 48px; height: 48px; }
+  .tech-marquee-item { min-height: 112px; font-size: 12px; opacity: .22; }
+  .tech-marquee-icon { width: 46px; height: 46px; min-width: 46px; max-width: 46px; }
   .faq-section .section-heading { position: static; }
   .contact-section { padding-top: 0; padding-bottom: 72px; }
   .contact-shell { padding: 36px 26px; }
