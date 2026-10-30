@@ -143,9 +143,8 @@ function Hero() {
     <section className="hero-section" id="hero" aria-labelledby="hero-title">
       <div className="container hero-layout">
         <div className="hero-copy">
-          <h1 id="hero-title">Le idee diventano<br /><span>esperienze digitali.</span></h1>
+          <h1 id="hero-title">Le tue idee diventano<br /><span>digitali.</span></h1>
           <p className="hero-position">Sono Francesco, Web Developer &amp; Digital Partner.</p>
-          <p className="hero-description">Dalla prima intuizione al progetto online. Creo soluzioni su misura, con attenzione a design, tecnologia e persone.</p>
           <div className="hero-actions flex flex-wrap">
             <Button component="a" href="#contact" className="primary-action" endIcon={<ArrowOutwardRounded />}>Parliamo del tuo progetto</Button>
             <Button component="a" href="#portfolio" className="text-action" endIcon={<ArrowForwardRounded />}>Vedi i progetti</Button>
@@ -160,12 +159,12 @@ function About() {
   return (
     <section id="about" className="section section-about" aria-labelledby="about-title">
       <div className="container">
-        <SectionTitle id="about-title" title={<>Un approccio personale.<br /><em>Una visione digitale.</em></>} />
+        <SectionTitle id="about-title" title={<><em>Una visione digitale.</em></>} />
         <div className="row gy-5 align-items-center">
           <div className="col-lg-6">
             <div className="about-copy">
-              <p>Sono Francesco, sviluppatore web e digital partner a Bari. Unisco progettazione, sviluppo e curiosità tecnologica per dare forma a idee concrete.</p>
-              <p>Ogni progetto parte dall'ascolto: capisco gli obiettivi, definisco una direzione chiara e realizzo esperienze digitali pensate per chi le utilizzerà.</p>
+              <p>Lavoro come sviluppatore web e digital partner a Bari e provincia. Partendo dalla progettazione, sviluppo e trasformo le tue idee e necessitá in soluzioni digitali.</p>
+              <p>Ogni progetto parte dall'ascolto: capisco i tuoi obiettivi, definisco una direzione chiara e realizzo soluzioni smart su misura.</p>
             </div>
           </div>
           <div className="col-lg-6">
@@ -185,7 +184,7 @@ function Services() {
   return (
     <section className="section services-section" id="services" aria-label="Servizi">
       <div className="container">
-        <SectionTitle title={<>Competenze diverse.<br />Un unico obiettivo.</>} intro="Dare forma a prodotti e strumenti digitali utili, semplici da usare e coerenti con chi li sceglie." />
+        <SectionTitle title={<>Le mie competenze</>} intro="Tramite le quali miro a prodotti e strumenti digitali utili, semplici da usare e coerenti con chi li sceglie." />
         <CardCarousel className="row g-4" label="Servizi">
           {services.map((service) => (
               <div className="col-12 col-md-6 mobile-carousel-slide" key={service.title}>
@@ -222,7 +221,7 @@ function Portfolio() {
   return (
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
-        <SectionTitle title="Progetti selezionati" intro="Esperienze digitali realizzate per attività, organizzazioni e community." />
+        <SectionTitle title="Progetti in evidenza" intro="Esperienze reali su cui ho avuto l'opportunità di lavorare." />
         <CardCarousel className="row gx-4 gy-5" label="Progetti">
           {projects.map((project) => <div className="col-12 col-md-6 mobile-carousel-slide" key={project.title}><ProjectCard project={project} /></div>)}
         </CardCarousel>
@@ -237,9 +236,7 @@ function Skills() {
       <div className="container">
         <div className="skills-layout">
           <div className="skills-lead">
-            <SectionTitle title={<>La tecnologia è un mezzo.<br /><em>Le persone sono il punto.</em></>}
-              intro="Progetto con attenzione alla semplicità d'uso, alla qualità del risultato e al dialogo con chi mi affida un'idea." />
-            <p className="skills-description">Dal design alle soluzioni web, scelgo strumenti e metodi in funzione del progetto, non il contrario.</p>
+            <SectionTitle title={<>La tecnologia è un mezzo.<br /><em>Le persone sono il punto.</em></>}/>
           </div>
           <div className="skills-soft">
             <h3>Soft Skills</h3>
@@ -268,7 +265,7 @@ function Faq() {
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 col-lg-5">
-            <SectionTitle title="Domande frequenti" intro="Le risposte alle domande più comuni prima di iniziare." />
+            <SectionTitle title="FAQ" intro="Le risposte alle domande più frequenti, per toglierti qualsiasi dubbio prima di iniziare." />
           </div>
           <div className="col-12 col-lg-7">
             <div className="faq-accordion">
@@ -304,8 +301,8 @@ function Contact() {
             </div>
             <div className="col-12 col-lg-5">
               <div className="contact-actions">
-                <Button className="contact-button" component="a" href="https://it.fiverr.com/s/R7pNDZD" target="_blank"
-                  rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Parliamo del progetto</Button>
+                <Button className="contact-button" component="a" href="mailto:lilnullbusiness@gmail.com" target="_blank"
+                  rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Contattami</Button>
                 <div className="contact-benefits"><span><CheckRounded fontSize="small" /> Preventivo gratuito</span><span><CheckRounded fontSize="small" /> Nessun impegno</span></div>
               </div>
             </div>
