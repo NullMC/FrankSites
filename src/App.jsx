@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   ThemeProvider, createTheme, CssBaseline, Button, IconButton, Drawer,
   Typography, Chip, Accordion, AccordionSummary, AccordionDetails
@@ -138,18 +138,35 @@ function Header({ mode, setMode }) {
   );
 }
 
+/**
+ * Minimalist hero: centred low-key portrait in front of a brand-coloured orb,
+ * oversized split headline around it, quiet copy and actions in the corners.
+ */
 function Hero() {
   return (
     <section className="hero-section" id="hero" aria-labelledby="hero-title">
+      <div className="hero-figure">
+        <div className="hero-orb" aria-hidden="true" />
+        <div className="hero-portrait">
+          <img src={asset('francesco.webp')} alt="Francesco, web developer e digital partner a Bari" width="1334" height="2000"
+            fetchPriority="high" decoding="async" />
+        </div>
+      </div>
       <div className="container hero-layout">
+        <h1 id="hero-title" className="hero-title">
+          <span className="hero-title-a"><span className="hero-line">Le tue</span> <span className="hero-line">idee</span></span>{' '}
+          <span className="hero-title-b"><span className="hero-line">diventano</span><br /><span className="hero-line"><em>digitali.</em></span></span>
+        </h1>
+      </div>
+      <div className="container hero-foot">
         <div className="hero-copy">
-          <h1 id="hero-title">Le tue idee diventano<br /><span>digitali.</span></h1>
           <p className="hero-position">Sono Francesco, Web Developer &amp; Digital Partner.</p>
           <div className="hero-actions flex flex-wrap">
             <Button component="a" href="#contact" className="primary-action" endIcon={<ArrowOutwardRounded />}>Parliamo del tuo progetto</Button>
             <Button component="a" href="#portfolio" className="text-action" endIcon={<ArrowForwardRounded />}>Vedi i progetti</Button>
           </div>
         </div>
+        <span className="hero-location"><PlaceOutlined fontSize="small" /> Bari, IT</span>
       </div>
     </section>
   );
@@ -159,7 +176,7 @@ function About() {
   return (
     <section id="about" className="section section-about" aria-labelledby="about-title">
       <div className="container">
-        <SectionTitle id="about-title" title={<><em>Una visione digitale.</em></>} />
+        <SectionTitle id="about-title" title={<>Una visione <em>digitale.</em></>} />
         <div className="row gy-5 align-items-center">
           <div className="col-lg-6">
             <div className="about-copy">
@@ -184,7 +201,7 @@ function Services() {
   return (
     <section className="section services-section" id="services" aria-label="Servizi">
       <div className="container">
-        <SectionTitle title={<>Le mie competenze</>} intro="Tramite le quali miro a prodotti e strumenti digitali utili, semplici da usare e coerenti con chi li sceglie." />
+        <SectionTitle title={<>Le mie <em>competenze</em></>} intro="Tramite le quali miro a prodotti e strumenti digitali utili, semplici da usare e coerenti con chi li sceglie." />
         <CardCarousel className="row g-4" label="Servizi">
           {services.map((service) => (
               <div className="col-12 col-md-6 mobile-carousel-slide" key={service.title}>
@@ -205,7 +222,7 @@ function ProjectCard({ project }) {
   return (
     <article className="project-card">
       <div className="project-visual">
-        <img loading="lazy" src={asset(project.image)} alt={'Logo del progetto ' + project.title} />
+        <img loading="lazy" decoding="async" src={asset(project.image)} alt={'Logo del progetto ' + project.title} />
         <a className="project-visual-link" href={project.url} target="_blank" rel="noopener noreferrer"
           aria-label={'Visita il sito di ' + project.title}><ArrowOutwardRounded /></a>
       </div>
@@ -221,7 +238,7 @@ function Portfolio() {
   return (
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
-        <SectionTitle title="Progetti in evidenza" intro="Esperienze reali su cui ho avuto l'opportunità di lavorare." />
+        <SectionTitle title={<>Progetti in <em>evidenza</em></>} intro="Esperienze reali su cui ho avuto l'opportunità di lavorare." />
         <CardCarousel className="row gx-4 gy-5" label="Progetti">
           {projects.map((project) => <div className="col-12 col-md-6 mobile-carousel-slide" key={project.title}><ProjectCard project={project} /></div>)}
         </CardCarousel>
@@ -272,7 +289,7 @@ function Faq() {
               {questions.map((entry, index) => (
                 <Accordion key={entry.question} expanded={expanded === index} onChange={(_, isExpanded) => setExpanded(isExpanded ? index : false)} disableGutters elevation={0} square>
                   <AccordionSummary expandIcon={<AddRounded className="faq-plus" />} aria-controls={'faq-answer-' + index} id={'faq-question-' + index}>
-                    <Typography component="h3" className="faq-question-text">{entry.question}</Typography>
+                    <Typography component="span" className="faq-question-text">{entry.question}</Typography>
                   </AccordionSummary>
                   <AccordionDetails id={'faq-answer-' + index}><Typography>{entry.answer}</Typography></AccordionDetails>
                 </Accordion>
@@ -292,7 +309,7 @@ function Contact() {
         <div className="contact-shell">
           <div className="row gy-5 align-items-end">
             <div className="col-12 col-lg-7">
-              <SectionTitle title={<>Un buon progetto<br />inizia parlando.</>} inverse />
+              <SectionTitle title={<>Un buon progetto<br />inizia <em>parlando.</em></>} inverse />
               <p className="contact-description">Raccontami cosa vuoi realizzare: obiettivi, funzionalità e tempi. Valuteremo insieme da dove partire.</p>
               <div className="contact-info">
                 <a href="mailto:lilnullbusiness@gmail.com"><EmailOutlined fontSize="small" /> lilnullbusiness@gmail.com</a>
@@ -331,16 +348,19 @@ function Footer() {
 }
 
 export default function App() {
-  const [mode, setMode] = useState(() => {
-    try { return localStorage.getItem('franksitez-theme') === 'dark' ? 'dark' : 'light'; }
-    catch { return 'light'; }
-  });
+  // Start from the prerendered (light) markup, then apply the saved theme before first paint.
+  // index.html sets data-theme early, so the page colours never flash.
+  const [mode, setMode] = useState('light');
+  useLayoutEffect(() => {
+    try { if (localStorage.getItem('franksitez-theme') === 'dark') setMode('dark'); }
+    catch { /* storage unavailable */ }
+  }, []);
   const theme = useMemo(() => createTheme({
     palette: {
       mode,
-      primary: { main: '#0a9782' },
-      background: { default: mode === 'dark' ? '#101818' : '#fafaf8' },
-      text: { primary: mode === 'dark' ? '#f1f4f2' : '#15211f' }
+      primary: { main: '#0e7c86' },
+      background: { default: mode === 'dark' ? '#070909' : '#f6f5f1' },
+      text: { primary: mode === 'dark' ? '#f2f0eb' : '#0d1213' }
     },
     typography: { fontFamily: 'DM Sans, sans-serif', button: { textTransform: 'none', fontWeight: 700 } },
     shape: { borderRadius: 12 },
