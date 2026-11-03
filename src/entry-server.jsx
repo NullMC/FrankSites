@@ -3,10 +3,9 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App.jsx';
-import { services, projects, questions } from './content.js';
+import { services, projects, questions, contactEmail } from './content.js';
 
 const SITE = 'https://franksitez.com/';
-const EMAIL = 'lilnullbusiness@gmail.com';
 
 // schema.org data built from the same content the page shows, so the two never drift apart.
 function structuredData() {
@@ -16,7 +15,7 @@ function structuredData() {
     name: 'Francesco',
     alternateName: 'Frank',
     jobTitle: 'Web Developer & Digital Partner',
-    email: 'mailto:' + EMAIL,
+    email: 'mailto:' + contactEmail,
     image: SITE + 'static/CSS/IMGS/og-image.jpg',
     url: SITE,
     address: { '@type': 'PostalAddress', addressLocality: 'Bari', addressRegion: 'Puglia', addressCountry: 'IT' },
@@ -34,7 +33,7 @@ function structuredData() {
         url: SITE,
         image: SITE + 'static/CSS/IMGS/og-image.jpg',
         logo: SITE + 'static/CSS/IMGS/logo.png',
-        email: EMAIL,
+        email: contactEmail,
         founder: { '@id': person['@id'] },
         address: person.address,
         areaServed: [{ '@type': 'City', name: 'Bari' }, { '@type': 'Country', name: 'Italia' }],

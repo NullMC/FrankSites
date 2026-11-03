@@ -8,7 +8,7 @@ import {
   LightModeOutlined, DarkModeOutlined, ChevronLeftRounded, ChevronRightRounded, AddRounded, EmailOutlined,
   PlaceOutlined, CheckRounded
 } from '@mui/icons-material';
-import { navigation, services, projects, softSkills, questions } from './content.js';
+import { navigation, services, projects, softSkills, questions, contactEmail } from './content.js';
 import TechScroller from './components/TechScroller.jsx';
 
 const asset = (file) => import.meta.env.BASE_URL + 'static/CSS/IMGS/' + encodeURIComponent(file);
@@ -312,13 +312,13 @@ function Contact() {
               <SectionTitle title={<>Un buon progetto<br />inizia <em>parlando.</em></>} inverse />
               <p className="contact-description">Raccontami cosa vuoi realizzare: obiettivi, funzionalità e tempi. Valuteremo insieme da dove partire.</p>
               <div className="contact-info">
-                <a href="mailto:lilnullbusiness@gmail.com"><EmailOutlined fontSize="small" /> lilnullbusiness@gmail.com</a>
+                <a href={'mailto:' + contactEmail}><EmailOutlined fontSize="small" /> {contactEmail}</a>
                 <span><PlaceOutlined fontSize="small" /> Bari, Italia</span>
               </div>
             </div>
             <div className="col-12 col-lg-5">
               <div className="contact-actions">
-                <Button className="contact-button" component="a" href="mailto:lilnullbusiness@gmail.com" target="_blank"
+                <Button className="contact-button" component="a" href={'mailto:' + contactEmail} target="_blank"
                   rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Contattami</Button>
                 <div className="contact-benefits"><span><CheckRounded fontSize="small" /> Preventivo gratuito</span><span><CheckRounded fontSize="small" /> Nessun impegno</span></div>
               </div>

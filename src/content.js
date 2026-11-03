@@ -1,4 +1,8 @@
 // Content preserved from the original HTML portfolio, in its original order.
+
+// The only contact channel shown on the site.
+export const contactEmail = 'info@franksitez.com';
+
 export const navigation = [
   { id: 'about', text: 'Chi sono' },
   { id: 'services', text: 'Servizi' },
