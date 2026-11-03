@@ -312,7 +312,7 @@ function Contact() {
               <SectionTitle title={<>Un buon progetto<br />inizia <em>parlando.</em></>} inverse />
               <p className="contact-description">Raccontami cosa vuoi realizzare: obiettivi, funzionalità e tempi. Valuteremo insieme da dove partire.</p>
               <div className="contact-info">
-                <a href={'mailto:' + contactEmail}><EmailOutlined fontSize="small" /> {contactEmail}</a>
+                <a href={'mailto:' + contactEmail} target="_blank" rel="noopener noreferrer"><EmailOutlined fontSize="small" /> {contactEmail}</a>
                 <span><PlaceOutlined fontSize="small" /> Bari, Italia</span>
               </div>
             </div>
