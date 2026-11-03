@@ -16,7 +16,7 @@ npm run build
 npm run preview
 ```
 
-La build statica è generata in `dist/`. Per Cloudflare Pages usa il comando di build `npm run build` e directory di output `dist`. Per GitHub Pages è incluso un workflow di pubblicazione da `main`: abilita **Settings > Pages > Build and deployment > GitHub Actions** se non è già attivo.
+La build statica è generata in `dist/`. Il sito è pubblicato su **Cloudflare Pages** a ogni push su `main`: comando di build `npm run build`, directory di output `dist`.
 
 ## Architettura
 
