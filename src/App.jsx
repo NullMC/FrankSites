@@ -318,7 +318,7 @@ function Contact() {
             </div>
             <div className="col-12 col-lg-5">
               <div className="contact-actions">
-                <Button className="contact-button" component="a" href={'mailto:' + contactEmail} target="_blank"
+                <Button className="contact-button" component="a" target="_blank" href={'mailto:' + contactEmail}
                   rel="noopener noreferrer" endIcon={<ArrowOutwardRounded />}>Contattami</Button>
                 <div className="contact-benefits"><span><CheckRounded fontSize="small" /> Preventivo gratuito</span><span><CheckRounded fontSize="small" /> Nessun impegno</span></div>
               </div>
