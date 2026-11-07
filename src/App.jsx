@@ -8,7 +8,8 @@ import {
   LightModeOutlined, DarkModeOutlined, ChevronLeftRounded, ChevronRightRounded, AddRounded, EmailOutlined,
   PlaceOutlined, CheckRounded
 } from '@mui/icons-material';
-import { navigation, services, projects, softSkills, questions, contactEmail } from './content.js';
+import { FaTiktok } from 'react-icons/fa6';
+import { navigation, services, projects, softSkills, questions, contactEmail, tiktok } from './content.js';
 import TechScroller from './components/TechScroller.jsx';
 
 const asset = (file) => import.meta.env.BASE_URL + 'static/CSS/IMGS/' + encodeURIComponent(file);
@@ -313,6 +314,7 @@ function Contact() {
               <p className="contact-description">Raccontami cosa vuoi realizzare: obiettivi, funzionalità e tempi. Valuteremo insieme da dove partire.</p>
               <div className="contact-info">
                 <a href={'mailto:' + contactEmail} target="_blank" rel="noopener noreferrer"><EmailOutlined fontSize="small" /> {contactEmail}</a>
+                <a href={tiktok.url} target="_blank" rel="noopener noreferrer" aria-label={'TikTok ' + tiktok.handle}><FaTiktok size={17} aria-hidden="true" /> {tiktok.handle}</a>
                 <span><PlaceOutlined fontSize="small" /> Bari, Italia</span>
               </div>
             </div>

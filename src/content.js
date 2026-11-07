@@ -2,6 +2,7 @@
 
 // The only contact channel shown on the site.
 export const contactEmail = 'info@franksitez.com';
+export const tiktok = { handle: '@franksitez', url: 'https://www.tiktok.com/@franksitez' };
 
 export const navigation = [
   { id: 'about', text: 'Chi sono' },
@@ -77,6 +78,14 @@ export const projects = [
     image: 'Logo Agenzia Casadibari.webp',
     url: 'https://casadibari.com',
     description: "Sito web per l'agenzia immobiliare Casadibari, con annunci consultabili, informazioni e canali di contatto."
+  },
+  {
+    title: "ItalFUT",
+    year: '2026',
+    tags: ['Full-Stack Design & Development'],
+    image: 'italfut.png',
+    url: 'https://italfut.it/',
+    description: "Piattaforma per organizzare tornei di calcio: squadre, calendario, risultati e classifiche automatiche, con un sito pubblico per ogni torneo."
   }
 ];
 

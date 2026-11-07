@@ -3,7 +3,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App.jsx';
-import { services, projects, questions, contactEmail } from './content.js';
+import { services, projects, questions, contactEmail, tiktok } from './content.js';
 
 const SITE = 'https://franksitez.com/';
 
@@ -18,6 +18,7 @@ function structuredData() {
     email: 'mailto:' + contactEmail,
     image: SITE + 'static/CSS/IMGS/og-image.jpg',
     url: SITE,
+    sameAs: [tiktok.url],
     address: { '@type': 'PostalAddress', addressLocality: 'Bari', addressRegion: 'Puglia', addressCountry: 'IT' },
     knowsAbout: [...new Set(services.flatMap((service) => service.tags))]
   };
@@ -34,6 +35,7 @@ function structuredData() {
         image: SITE + 'static/CSS/IMGS/og-image.jpg',
         logo: SITE + 'static/CSS/IMGS/logo.png',
         email: contactEmail,
+        sameAs: [tiktok.url],
         founder: { '@id': person['@id'] },
         address: person.address,
         areaServed: [{ '@type': 'City', name: 'Bari' }, { '@type': 'Country', name: 'Italia' }],
