@@ -219,18 +219,42 @@ function Services() {
   );
 }
 
-function ProjectCard({ project }) {
+const screenshot = (name, width) => import.meta.env.BASE_URL + 'static/CSS/IMGS/projects/' + name + '-' + width + '.webp';
+const domainOf = (url) => new URL(url).hostname.replace(/^www\./, '');
+
+/**
+ * Showcase card: the live homepage in a browser frame beside the project story.
+ * Cards stick and stack while scrolling; each one is tinted with the project's own brand colour.
+ */
+function ProjectCard({ project, index }) {
+  const titleId = 'project-' + project.shot;
   return (
-    <article className="project-card">
-      <div className="project-visual">
-        <img loading="lazy" decoding="async" src={asset(project.image)} alt={'Logo del progetto ' + project.title} />
-        <a className="project-visual-link" href={project.url} target="_blank" rel="noopener noreferrer"
-          aria-label={'Visita il sito di ' + project.title}><ArrowOutwardRounded /></a>
+    <article className="work-card" aria-labelledby={titleId}
+      style={{ '--work-accent': project.accent, '--work-index': index }}>
+      <div className="work-info">
+        <div className="work-brand">
+          <span className="work-logo">
+            <img loading="lazy" decoding="async" src={asset(project.image)} alt={'Logo del progetto ' + project.title} />
+          </span>
+          <span className="work-year">{project.year}</span>
+        </div>
+        <h3 id={titleId}>{project.title}</h3>
+        <p>{project.descriptionBefore}{project.partner && <a href={project.partner.url} target="_blank" rel="noopener noreferrer" className="inline-link">{project.partner.title}</a>}{project.descriptionAfter}{project.description}</p>
+        <div className="tag-row">{project.tags.map((tag) => <Chip key={tag} size="small" className="project-tag" label={tag} />)}</div>
+        <Button component="a" href={project.url} target="_blank" rel="noopener noreferrer" className="work-cta"
+          endIcon={<ArrowOutwardRounded />} aria-label={'Visita il sito di ' + project.title}>Visita il sito</Button>
       </div>
-      <div className="project-meta">{project.year}</div>
-      <h3><a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}<ArrowOutwardRounded fontSize="small" /></a></h3>
-      <p>{project.descriptionBefore}{project.partner && <a href={project.partner.url} target="_blank" rel="noopener noreferrer" className="inline-link">{project.partner.title}</a>}{project.descriptionAfter}{project.description}</p>
-      <div className="tag-row">{project.tags.map((tag) => <Chip key={tag} size="small" className="project-tag" label={tag} />)}</div>
+      {/* Same destination as the button, so it stays out of the tab order and the accessibility tree. */}
+      <a className="work-frame" href={project.url} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true">
+        <span className="work-frame-bar">
+          <span className="work-dots"><span /><span /><span /></span>
+          <span className="work-url">{domainOf(project.url)}</span>
+        </span>
+        <img loading="lazy" decoding="async" width="1440" height="900" alt={'Homepage del sito ' + project.title}
+          src={screenshot(project.shot, 1440)}
+          srcSet={screenshot(project.shot, 800) + ' 800w, ' + screenshot(project.shot, 1440) + ' 1440w'}
+          sizes="(max-width: 991px) 92vw, 760px" />
+      </a>
     </article>
   );
 }
@@ -239,10 +263,10 @@ function Portfolio() {
   return (
     <section className="section portfolio-section" id="portfolio" aria-label="Portfolio progetti">
       <div className="container">
-        <SectionTitle title={<>Progetti in <em>evidenza</em></>} intro="Esperienze reali su cui ho avuto l'opportunità di lavorare." />
-        <CardCarousel className="row gx-4 gy-5" label="Progetti">
-          {projects.map((project) => <div className="col-12 col-md-6 mobile-carousel-slide" key={project.title}><ProjectCard project={project} /></div>)}
-        </CardCarousel>
+        <SectionTitle title={<>Progetti in <em>evidenza</em></>} intro="Esperienze reali su cui ho avuto l'opportunità di lavorare." inverse />
+        <div className="work-stack">
+          {projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}
+        </div>
       </div>
     </section>
   );

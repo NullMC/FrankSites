@@ -36,20 +36,15 @@ export const services = [
   }
 ];
 
+// shot: homepage screenshot in IMGS/projects (-800/-1440.webp); accent: the project's own brand colour.
 export const projects = [
-  {
-    title: "Pizzeria L'angoletto",
-    year: '2024',
-    tags: ['Logo', 'Design', 'Dev'],
-    image: 'angoletto.webp',
-    url: 'https://menuangolettobitritto.com/',
-    description: "Identità visiva e menù digitale progettati per rendere semplice e immediata la consultazione."
-  },
   {
     title: "Pizzeria L'Oliva",
     year: '2026',
     tags: ['Design', 'Dev'],
     image: 'logol-oliva.png',
+    shot: 'oliva',
+    accent: '#e8842c',
     url: 'https://pizzeria-l-oliva.pages.dev/',
     description: "Un menù digitale con un'interfaccia moderna e una forte attenzione alla presentazione visiva."
   },
@@ -58,6 +53,8 @@ export const projects = [
     year: '2026',
     tags: ['Prompt Structuring', 'Design', 'Dev', '"I made it at PugliaHack 2026"'],
     image: 'civis-logo.png',
+    shot: 'civis',
+    accent: '#5b6cf5',
     url: 'https://communitycivis.it/',
     descriptionBefore: "Progetto realizzato durante PugliaHack 2026 con il supporto di ",
     partner: { title: 'Lovable.dev', url: 'https://lovable.dev' },
@@ -68,6 +65,8 @@ export const projects = [
     year: '2026',
     tags: ['Full-Stack Design & Development'],
     image: 'StreetLeague.webp',
+    shot: 'streetleague',
+    accent: '#ec4f95',
     url: 'https://streetleaguebari.it/',
     description: "Piattaforma per la community Street League: competizioni, squadre, risultati, classifiche e statistiche in un unico spazio."
   },
@@ -76,6 +75,8 @@ export const projects = [
     year: '2026',
     tags: ['Full-Stack Development'],
     image: 'Logo Agenzia Casadibari.webp',
+    shot: 'casadibari',
+    accent: '#36b24a',
     url: 'https://casadibari.com',
     description: "Sito web per l'agenzia immobiliare Casadibari, con annunci consultabili, informazioni e canali di contatto."
   },
@@ -84,6 +85,8 @@ export const projects = [
     year: '2026',
     tags: ['Full-Stack Design & Development'],
     image: 'italfut.png',
+    shot: 'italfut',
+    accent: '#c6f36b',
     url: 'https://italfut.it/',
     description: "Piattaforma per organizzare tornei di calcio: squadre, calendario, risultati e classifiche automatiche, con un sito pubblico per ogni torneo."
   }

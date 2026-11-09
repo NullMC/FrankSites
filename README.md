@@ -26,6 +26,7 @@ La build statica è generata in `dist/`. Il sito è pubblicato su **Cloudflare P
 - `src/styles.css`: design system responsive, carousel touch e filigrana animata a tutta larghezza.
 - `src/components/TechScroller.jsx`: tecnologie in scorrimento continuo sotto le Soft Skills, con pausa al passaggio del mouse e rispetto del movimento ridotto.
 - `public/static/CSS/IMGS/`: asset del portfolio, incluso il ritratto scontornato (`francesco.webp`) e l'immagine social `og-image.jpg` (1200×630).
+- `public/static/CSS/IMGS/projects/`: screenshot delle homepage dei progetti mostrate nella sezione Portfolio. Quando aggiungi un progetto in `content.js` (con `shot` e `accent`), generale con `npm run screenshots -- <shot>` (richiede Chrome installato).
 - `public/robots.txt`, `public/sitemap.xml`: indicizzazione; aggiorna `lastmod` nella sitemap quando cambi i contenuti.
 
 L'ordine rimane Home, Chi sono, Servizi, Portfolio, Competenze, FAQ e Contatti. Nessuna schermata di loading o dipendenza da Three.js.

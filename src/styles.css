@@ -163,20 +163,59 @@ h1 em, h2 em, h3 em { font-family: var(--font-serif); font-style: italic; font-w
 .MuiChip-root.minimal-chip, .MuiChip-root.project-tag { border: 1px solid var(--line); background: transparent; border-radius: 999px; color: var(--ink-muted); height: auto; min-height: 28px; font: 500 12px var(--font-body); }
 .MuiChip-root.minimal-chip .MuiChip-label, .MuiChip-root.project-tag .MuiChip-label { padding: 5px 11px; white-space: normal; }
 
-/* Selected work */
-.portfolio-section { background: var(--page); }
-.project-card { height: 100%; display: flex; flex-direction: column; padding-bottom: 8px; }
-.project-visual { position: relative; aspect-ratio: 1.45; overflow: hidden; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--radius); background: radial-gradient(circle at 50% 120%, color-mix(in srgb, var(--accent-glow) 18%, transparent), transparent 60%), var(--surface); }
-.project-visual img { width: 58%; height: 58%; object-fit: contain; transition: transform .6s var(--ease-out); }
-.project-card:hover .project-visual img { transform: scale(1.06); }
-.project-visual-link { position: absolute; right: 18px; bottom: 18px; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 50%; transition: background .25s, color .25s, transform .35s var(--ease-out); }
-.project-visual-link:hover { background: var(--ink); color: var(--page); transform: rotate(45deg); }
-.project-meta { margin: 22px 0 0; color: var(--accent); font: 600 13px var(--font-body); }
-.project-card h3 { margin: 8px 0 12px; color: var(--ink); font-weight: 700; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.08; letter-spacing: -.045em; }
-.project-card h3 a { display: inline-flex; align-items: center; gap: 10px; }
-.project-card h3 a svg { color: var(--accent); transition: transform .25s var(--ease-out); }
-.project-card h3 a:hover svg { transform: translate(3px, -3px); }
-.project-card p { color: var(--ink-muted); line-height: 1.8; font-size: 15px; margin: 0 0 23px; }
+/* Selected work — always-dark showcase band. Each card shows the live homepage in a browser
+   frame; cards stick and stack while scrolling, tinted with the project's own brand colour. */
+.portfolio-section { position: relative; background: #050606; color: #f3f1ec; border-block: 1px solid #161c1d; }
+.portfolio-section .section-heading { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); align-items: end; gap: 22px 56px; margin-bottom: clamp(48px, 6vw, 92px); }
+.portfolio-section .section-heading h2 { font-size: clamp(50px, 7.6vw, 128px); line-height: .9; letter-spacing: -.058em; }
+.portfolio-section .section-intro { justify-self: end; max-width: 340px; margin: 0 0 .6em; color: #a3a8a6; }
+.work-stack { display: grid; gap: clamp(28px, 3.4vw, 44px); }
+.work-card {
+  --work-accent: var(--accent-glow);
+  position: sticky;
+  top: calc(98px + var(--work-index, 0) * 14px);
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(28px, 4.2vw, 68px);
+  padding: clamp(26px, 3.6vw, 52px);
+  border: 1px solid #1d2426;
+  border-radius: 30px;
+  background: radial-gradient(110% 95% at 100% 0%, color-mix(in srgb, var(--work-accent) 17%, transparent), transparent 58%), #0d1112;
+  box-shadow: 0 -22px 60px -28px rgba(0, 0, 0, .95);
+}
+.work-info { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.work-brand { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(22px, 3.2vw, 40px); }
+.work-logo { display: grid; place-items: center; width: 64px; height: 64px; padding: 8px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 14px 34px -12px color-mix(in srgb, var(--work-accent) 75%, transparent); }
+.work-logo img { width: 100%; height: 100%; object-fit: contain; }
+.work-year { padding: 6px 12px; border: 1px solid color-mix(in srgb, var(--work-accent) 45%, transparent); border-radius: 999px; color: color-mix(in srgb, var(--work-accent) 70%, #fff); font: 600 12px/1 var(--font-body); letter-spacing: .06em; }
+.work-card h3 { margin: 0 0 16px; color: #f3f1ec; font-weight: 700; font-size: clamp(36px, 4.3vw, 66px); line-height: .98; letter-spacing: -.05em; }
+.work-card p { max-width: 470px; margin: 0 0 22px; color: #a9b0ae; font-size: 15px; line-height: 1.8; }
+.work-card .inline-link { color: #f3f1ec; }
+.work-card .tag-row { margin: 0 0 30px; }
+.work-card .MuiChip-root.project-tag { border-color: #2a3335; color: #c9cfcd; }
+.MuiButton-root.work-cta { min-height: 48px; padding: 12px 22px; border-radius: 999px; background: #f3f1ec; color: #071012; font: 600 14px/1.4 var(--font-body); transition: background .25s, transform .25s var(--ease-out); }
+.MuiButton-root.work-cta:hover { background: color-mix(in srgb, var(--work-accent) 60%, #fff); color: #071012; transform: translateY(-2px); }
+.work-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid #283033;
+  border-radius: 16px;
+  background: #121617;
+  box-shadow: 0 40px 90px -40px color-mix(in srgb, var(--work-accent) 70%, transparent), 0 24px 50px -24px rgba(0, 0, 0, .85);
+  transform: perspective(1600px) rotateY(-5deg) rotateX(2deg);
+  transition: transform .7s var(--ease-out), box-shadow .7s var(--ease-out);
+}
+.work-card:hover .work-frame { transform: perspective(1600px) translateY(-6px); box-shadow: 0 50px 110px -40px color-mix(in srgb, var(--work-accent) 90%, transparent), 0 28px 60px -24px rgba(0, 0, 0, .9); }
+.work-frame-bar { display: flex; align-items: center; gap: 12px; height: 38px; padding: 0 14px; border-bottom: 1px solid #222a2c; background: #0f1314; }
+.work-dots { display: flex; gap: 6px; flex: none; }
+.work-dots span { width: 9px; height: 9px; border-radius: 50%; background: #2d3537; }
+.work-url { flex: 1; min-width: 0; max-width: 280px; margin: 0 auto; padding: 4px 12px; border-radius: 999px; background: #192022; color: #8d9593; font: 500 12px/1.4 var(--font-body); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.work-frame img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .9s var(--ease-out); }
+.work-card:hover .work-frame img { transform: scale(1.035); }
 .inline-link { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
 
 /* Human skills, followed by full-width watermark ticker. */
@@ -335,6 +374,11 @@ h1 em, h2 em, h3 em { font-family: var(--font-serif); font-style: italic; font-w
 }
 
 @media (max-width: 991px) {
+  .portfolio-section .section-heading { grid-template-columns: 1fr; }
+  .portfolio-section .section-intro { justify-self: start; margin: 0; }
+  .work-card { grid-template-columns: 1fr; gap: 30px; }
+  .work-frame { order: -1; transform: none; }
+  .work-card:hover .work-frame { transform: none; }
   .desktop-links, .MuiButton-root.header-cta { display: none; }
   .MuiIconButton-root.mobile-menu-button { display: inline-flex; }
   .skills-layout { gap: 40px; }
@@ -359,7 +403,6 @@ h1 em, h2 em, h3 em { font-family: var(--font-serif); font-style: italic; font-w
   .section-heading h2 { font-size: clamp(36px, 9.5vw, 56px); }
   .about-aside { margin: 5px 0 0; }
   .service-card { min-height: 320px; }
-  .project-visual { aspect-ratio: 1.42; }
   .skills-layout { grid-template-columns: 1fr; gap: 44px; }
   .skills-lead .section-heading h2 { font-size: clamp(34px, 8.6vw, 52px); }
   .skills-watermark-breakout { margin-top: 58px; }
@@ -401,8 +444,7 @@ h1 em, h2 em, h3 em { font-family: var(--font-serif); font-style: italic; font-w
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  .mobile-carousel-track .service-card,
-  .mobile-carousel-track .project-card { height: 100%; }
+  .mobile-carousel-track .service-card { height: 100%; }
   .mobile-carousel-track .service-card:hover { transform: none; }
   .mobile-carousel-controls { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
   .mobile-carousel-controls .MuiIconButton-root { width: 44px; height: 44px; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; background: var(--surface); }
@@ -419,6 +461,11 @@ h1 em, h2 em, h3 em { font-family: var(--font-serif); font-style: italic; font-w
   .contact-info a { font-size: 13px; }
   .footer-main { min-height: 95px; }
   .footer-bottom { flex-direction: column; }
+}
+
+/* Stacking needs the whole card on screen; plain list on phones and short windows. */
+@media (max-width: 767px), (max-height: 760px) {
+  .work-card { position: relative; top: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
